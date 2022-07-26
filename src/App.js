@@ -8,12 +8,13 @@ import Home from "./pages/Home";
 import Favorite from "./pages/Favorite";
 import NavBar from "./components/NavBar";
 import { Routes, Route, Link } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <div className="App">
       <NavBar></NavBar>
-      <div className="mx-10  py-5">
+      <div className="mx-10   py-5">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />} />
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

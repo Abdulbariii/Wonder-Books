@@ -36,7 +36,7 @@ export default function NavBar() {
       <div className="flex md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center">
         {links.map((link) => (
           <Link
-            className={`  text-2xl text-black font-light`}
+            className={`  text-2xl text-black font-light hover:text-opacity-60 transition-all duration-100`}
             to={link.link}
             key={link.name}
           >

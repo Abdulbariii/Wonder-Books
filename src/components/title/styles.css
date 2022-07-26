@@ -3,6 +3,14 @@
   height: 50%;
 }
 
+@media only screen and (max-width: 600px) {
+  .swiper {
+    width: 100%;
+    display: flex;
+    margin-right: 20px;
+  }
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -33,5 +41,9 @@
   display: none;
 }
 .swiper-button-next {
+  display: none;
+}
+
+.swiper-pagination-bullet {
   display: none;
 }
