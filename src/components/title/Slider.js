@@ -11,8 +11,10 @@ import "./styles.css";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+import useTheme from "../../hook/useTheme";
 
 export default function Slider() {
+  const { mode } = useTheme();
   return (
     <>
       <Swiper
@@ -27,7 +29,9 @@ export default function Slider() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className={`mySwiper  ${
+          mode === "bg-gray-900" ? "text-white" : "text-black"
+        }`}
       >
         <SwiperSlide className="flex flex-col gap-10">
           <h1>The first book</h1>
