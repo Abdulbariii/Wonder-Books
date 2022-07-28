@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import useTheme from "../hook/useTheme";
 import ThemeButton from "./Themes/ThemeButton";
 export default function NavBar(props) {
@@ -9,6 +9,9 @@ export default function NavBar(props) {
     { name: "Library", link: "/library" },
     { name: "Favorite", link: "/favorite" },
   ];
+
+  const path = useLocation();
+  console.log(path.pathname);
 
   const [open, setOpen] = useState(false);
 
@@ -45,7 +48,9 @@ export default function NavBar(props) {
           <Link
             className={`  text-2xl ${
               mode === "bg-gray-900" ? "text-white" : "text-black"
-            } font-light hover:text-opacity-60 transition-all duration-100`}
+            }   font-light hover:text-opacity-60 transition-all duration-100 border-solid ${
+              link.link === path.pathname ? `border-b-2 ${text}` : null
+            } `}
             to={link.link}
             key={link.name}
           >
