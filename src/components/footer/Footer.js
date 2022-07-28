@@ -8,15 +8,15 @@ const links = [
 ];
 
 export default function Footer() {
-  const { mode, color } = useTheme();
+  const { mode, color, text } = useTheme();
   console.log(color);
   return (
     <div
       className={`flex flex-col ${
         mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
-      } h-2/5 px-10 py-5 w-full gap-5  justify-around items-center`}
+      } h-2/5 px-10 py-5 w-full gap-5  justify-between items-center`}
     >
-      <div className="flex flex-col md:flex-row justify-around items-stretch gap-28">
+      <div className="flex flex-col md:flex-row w-full justify-around items-stretch gap-28">
         <div
           className={`flex flex-col ${
             mode === "bg-gray-900" ? "text-gray-900" : "text-gray-50"
@@ -40,7 +40,7 @@ export default function Footer() {
             <h1
               className={`${
                 color === "bg-violet-400" ? "text-violet-400" : null
-              } font-normal text-2xl`}
+              } font-normal text-2xl ${text}`}
             >
               Contact
             </h1>
@@ -50,13 +50,17 @@ export default function Footer() {
           <p className=" font-light text-xl">0750XXXXXXX</p>
           <p className=" font-light text-xl">Erbil,Kurdistan</p>
         </div>
+
+        <div
+          className={`text-3xl flex justify-around gap-5 ${text} cursor-pointer`}
+        >
+          <ion-icon name="logo-facebook"></ion-icon>
+          <ion-icon name="logo-twitter"></ion-icon>
+          <ion-icon name="logo-instagram"></ion-icon>
+        </div>
       </div>
       <div>
-        <p
-          className={`${color === "bg-violet-400" ? "text-violet-400" : null}`}
-        >
-          C:2022 : Abdulbari
-        </p>
+        <p className={`${text} ml-16`}>C:2022 : Abdulbari</p>
       </div>
     </div>
   );

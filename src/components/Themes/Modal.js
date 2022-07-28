@@ -1,9 +1,32 @@
 import React from "react";
 import useTheme from "../../hook/useTheme";
-
+import { motion } from "framer-motion";
 export default function Modal(props) {
   const colors = ["bg-sky-200", "bg-red-200", "bg-yellow-200", "bg-violet-200"];
-
+  const texts = [
+    "text-sky-200",
+    "text-red-200",
+    "text-yellow-200",
+    "text-violet-200",
+  ];
+  const dataTheme = [
+    {
+      bg: "bg-sky-200",
+      text: "text-sky-500",
+    },
+    {
+      bg: "bg-red-200",
+      text: "text-red-500",
+    },
+    {
+      bg: "bg-yellow-200",
+      text: "text-yellow-500",
+    },
+    {
+      bg: "bg-violet-200",
+      text: "text-violet-500",
+    },
+  ];
   const closeModal = () => {
     props.setModal(false);
   };
@@ -11,10 +34,19 @@ export default function Modal(props) {
   const modeHandler = (mode) => {
     modeChange(mode);
   };
-  const { mode, colorChange, color, modeChange } = useTheme();
+
+  const { mode, colorChange, color, modeChange, textChange } = useTheme();
   return (
-    <div
-      className={`fixed z-50 flex flex-col justify-around items-center left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] w-96 h-[400px] ${
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.5 }}
+      transition={{
+        duration: 0.8,
+        delay: 0,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+      className={`fixed z-50 flex flex-col justify-around items-center md:left-[37%] left-[10%] top-1/4 w-96 h-[400px] ${
         mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
       } shadow-sm shadow-[#00000069] rounded-2xl`}
     >
@@ -44,7 +76,7 @@ export default function Modal(props) {
             onClick={() => {
               modeHandler("bg-gray-50");
             }}
-            className="bg-white text-indigo-600 w-32 h-10 text-xl rounded-2xl duration-200 transition-all shadow-sm shadow-[#0000006b] hover:shadow-md hover:shadow-[#0000006b]"
+            className={`bg-white text-indigo-600 w-32 h-10 text-xl rounded-2xl shadow-[#0000006b] duration-200 transition-all shadow-sm  hover:shadow-md hover:shadow-[#0000006b]`}
           >
             Light
           </button>
@@ -52,7 +84,11 @@ export default function Modal(props) {
             onClick={() => {
               modeHandler("bg-gray-900");
             }}
-            className={`bg-gray-900 text-indigo-300 w-32 h-10 text-xl duration-200 transition-all shadow-sm shadow-[#0000006b] hover:shadow-md hover:shadow-[#0000006b] rounded-2xl`}
+            className={`bg-gray-900 text-indigo-300 w-32 h-10 text-xl duration-200 transition-all shadow-sm  ${
+              mode === "bg-gray-50"
+                ? "shadow-[#ffffff68]"
+                : "shadow-[#00000062]"
+            } hover:shadow-md hover:shadow-[#ffffff6b] rounded-2xl`}
           >
             Dark
           </button>
@@ -69,15 +105,18 @@ export default function Modal(props) {
           Theme
         </h1>
         <div className="flex gap-2 mr-10">
-          {colors.map((color) => (
+          {dataTheme.map((color) => (
             <div
               key={color}
-              onClick={() => colorChange(color)}
-              className={`${color} rounded-full w-8 h-8 m-2 cursor-pointer `}
+              onClick={() => {
+                textChange(color.text);
+                colorChange(color.bg);
+              }}
+              className={`${color.bg} rounded-full w-8 h-8 m-2 cursor-pointer `}
             ></div>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
