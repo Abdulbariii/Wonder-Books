@@ -16,13 +16,13 @@ export default function Footer() {
         mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
       } h-2/5 px-10 py-5 w-full gap-5  justify-between items-center`}
     >
-      <div className="flex flex-col md:flex-row w-full justify-around items-stretch gap-28">
+      <div className="flex flex-col md:flex-row w-full justify-around items-stretch gap-10">
         <div
           className={`flex flex-col ${
             mode === "bg-gray-900" ? "text-gray-900" : "text-gray-50"
-          }  justify-between items-start`}
+          }  justify-between items-start `}
         >
-          <h1 className="text-4xl font-normal ">WONDER BOOKS</h1>
+          <h1 className="text-4xl font-normal md:pb-0 pb-2 ">WONDER BOOKS</h1>
           <div className="flex justify-evenly items-center gap-5">
             {links.map((link) => (
               <Link className="text-xl font-light " to={link.link}>
@@ -34,7 +34,7 @@ export default function Footer() {
         <div
           className={`flex ${
             mode === "bg-gray-900" ? "text-gray-900" : "text-gray-50"
-          }  flex-col justify-around items-stretch`}
+          }  flex-col justify-around items-stretch h-full`}
         >
           <div>
             <h1
@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
       </div>
       <div>
-        <p className={`${text} ml-16`}>C:2022 : Abdulbari</p>
+        <p className={`${text} ml-14`}>C:2022 : Abdulbari</p>
       </div>
     </div>
   );

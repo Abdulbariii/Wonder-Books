@@ -3,15 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import useTheme from "../hook/useTheme";
 import ThemeButton from "./Themes/ThemeButton";
 export default function NavBar(props) {
-  const { mode } = useTheme();
+  const { mode, text } = useTheme();
   const links = [
     { name: "Home", link: "/" },
     { name: "Library", link: "/library" },
     { name: "Favorite", link: "/favorite" },
   ];
-
-  const url = useParams();
-  console.log(url);
 
   const [open, setOpen] = useState(false);
 
@@ -70,10 +67,9 @@ export default function NavBar(props) {
           >
             0
           </span>
-          <ion-icon
-            style={{ color: mode === "bg-gray-900" ? "#ffffff" : "#000000" }}
-            name="bag-add-outline"
-          ></ion-icon>
+          <div className={`${text} mt-2`}>
+            <ion-icon name="bag-add-outline"></ion-icon>
+          </div>
         </Link>
         <Link
           className="text-2xl font-normal items-center justify-around  flex "
@@ -86,10 +82,9 @@ export default function NavBar(props) {
           >
             Login
           </span>
-          <ion-icon
-            style={{ color: mode === "bg-gray-900" ? "#ffffff" : "#000000" }}
-            name="log-in-outline"
-          ></ion-icon>
+          <div className={`${text} mt-2`}>
+            <ion-icon name="log-in-outline"></ion-icon>
+          </div>
         </Link>
       </div>
     </div>
