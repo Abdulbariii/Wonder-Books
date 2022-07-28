@@ -46,7 +46,7 @@ export default function Modal(props) {
         delay: 0,
         ease: [0, 0.71, 0.2, 1.01],
       }}
-      className={`fixed z-50 flex flex-col justify-around items-center md:left-[37%] left-[10%] top-1/4 w-96 h-[400px] ${
+      className={` z-50 flex flex-col justify-around items-center trans w-80 md:h-[400px] h-96 md:w-96 ${
         mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
       } shadow-sm shadow-[#00000069] rounded-2xl`}
     >
