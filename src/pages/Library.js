@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Card from "../components/LibrarySection/Card";
 export default function Library() {
   return (
     <motion.div
@@ -10,6 +11,7 @@ export default function Library() {
       className=" md:mx-24 py-20 lg:py-0   px-5  min-h-screen"
     >
       <h1 className="text-7xl text-red-500">Library</h1>
+      <Card></Card>
     </motion.div>
   );
 }

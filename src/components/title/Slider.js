@@ -12,8 +12,13 @@ import "./styles.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 import useTheme from "../../hook/useTheme";
+import { useFetch } from "../../hook/useFetch";
 
 export default function Slider() {
+  const { data, isPending, error } = useFetch(
+    "https://www.googleapis.com/books/v1/volumes?q=paulo:keyes&orderBy=newest&maxResults=3&key=AIzaSyBLmw55bH-rB7hKD-CPJPvlTI0LtQ5tAK8"
+  );
+
   const { mode } = useTheme();
   return (
     <>
@@ -33,54 +38,24 @@ export default function Slider() {
           mode === "bg-gray-900" ? "text-white" : "text-black"
         }`}
       >
-        <SwiperSlide className="flex flex-col gap-10">
-          <h1>The first book</h1>
-          <img
-            className="w-60 h-56"
-            src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          ></img>
-          <p>
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-          </p>
-        </SwiperSlide>
-        <SwiperSlide className="flex flex-col gap-10">
-          <h1>The first book</h1>
-          <img
-            className="w-60 h-56"
-            src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          ></img>
-          <p>
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-          </p>
-        </SwiperSlide>
-        <SwiperSlide className="flex flex-col gap-10">
-          <h1>The first book</h1>
-          <img
-            className="w-60 h-56"
-            src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          ></img>
-          <p>
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-          </p>
-        </SwiperSlide>
-        <SwiperSlide className="flex flex-col gap-10">
-          <h1>The first book</h1>
-          <img
-            className="w-60 h-56"
-            src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          ></img>
-          <p>
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-            "I am not afraid of storms, for I am learning how to sail my ship."
-          </p>
-        </SwiperSlide>
+        {isPending && <h1>Loading...</h1>}
+        {error && <h1>{error}</h1>}
+        {data &&
+          data.items.map((book) => (
+            <SwiperSlide className="flex flex-col gap-10">
+              <h1>{book.volumeInfo.title}</h1>
+              <img
+                className="object-cover w-72 rounded-2xl   h-96"
+                src={
+                  book.volumeInfo.imageLinks &&
+                  book.volumeInfo.imageLinks.thumbnail.replace(
+                    "zoom=1",
+                    "zoom=10"
+                  )
+                }
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );
