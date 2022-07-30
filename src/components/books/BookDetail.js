@@ -25,7 +25,7 @@ export default function BookDetail(props) {
         <div className="flex flex-col md:gap-28 justify-between items-start">
           <div className="flex justify-around flex-col gap-5">
             <div className="flex justify-between  items-center md:gap-40">
-              <h1 className={`text-6xl  ${text}`}>
+              <h1 className={`text-5xl  ${text}`}>
                 {props.data.volumeInfo.title}
               </h1>
 
@@ -115,9 +115,15 @@ export default function BookDetail(props) {
           </div>
         </div>
       </div>
-      <div className="flex justify-around flex-col">
-        <h1 className={`${text}`}>Description</h1>
-        <h1>{` ${props.data.volumeInfo.description}`}</h1>
+      <div className="flex gap-10 pb-10 justify-around flex-col">
+        <h1 className={`${text} text-3xl`}>Description</h1>
+        <h1
+          className={`${color} ${
+            mode === "bg-gray-900"
+              ? "text-gray-50 text-opacity-95"
+              : "text-gray-900 text-opacity-80"
+          } bg-opacity-20 p-5 rounded-2xl text-md font-extralight  leading-7`}
+        >{` ${props.data.volumeInfo.description}`}</h1>
       </div>
     </div>
   );
