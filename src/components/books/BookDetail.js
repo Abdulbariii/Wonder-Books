@@ -1,0 +1,124 @@
+import React, { useState } from "react";
+import useTheme from "../../hook/useTheme";
+
+export default function BookDetail(props) {
+  const { color, text, mode } = useTheme();
+  const [fav, setFav] = useState("bookmark-outline");
+
+  console.log(props.data);
+  return (
+    <div className="flex flex-col items-start justify-evenly md:pt-20 gap-32  ">
+      <div
+        className={`flex justify-around items-start gap-20 flex-wrap lg:flex-nowrap `}
+      >
+        <img
+          className={`object-cover w-80 h-[450px]  rounded-2xl   `}
+          src={
+            props.data.volumeInfo.imageLinks &&
+            props.data.volumeInfo.imageLinks.thumbnail.replace(
+              "zoom=1",
+              "zoom=10"
+            )
+          }
+        />
+
+        <div className="flex flex-col md:gap-28 justify-between items-start">
+          <div className="flex justify-around flex-col gap-5">
+            <div className="flex justify-between  items-center md:gap-40">
+              <h1 className={`text-6xl  ${text}`}>
+                {props.data.volumeInfo.title}
+              </h1>
+
+              <div
+                onClick={() => {
+                  setFav(fav === "bookmark" ? "bookmark-outline" : "bookmark");
+                }}
+                className={`${text} cursor-pointer  mt-5 text-4xl `}
+              >
+                <ion-icon name={`${fav}`}></ion-icon>
+              </div>
+            </div>
+
+            <div
+              className={`text-xl my-2 font-light ${
+                mode === "bg-gray-900" ? "text-gray-50" : "text-gray-900"
+              }`}
+            >
+              <h1 className="py-1">
+                Author <span className={`${text} `}>:</span>
+                <span className="text-gray-400">
+                  {" "}
+                  {` ${props.data.volumeInfo.authors.map((author) => author)}`}
+                </span>
+              </h1>
+              <h1 className="py-1">
+                Gener <span className={`${text}`}>:</span>
+                <span className="text-gray-400">
+                  {" "}
+                  {` ${props.data.volumeInfo.categories[0]}`}
+                </span>
+              </h1>
+              <h1 className="py-1">
+                Language <span className={`${text}`}>:</span>
+                <span className="text-gray-400">
+                  {" "}
+                  {`${props.data.volumeInfo.language}`}
+                </span>
+              </h1>
+              <h1 className="py-1">
+                Pages <span className={`${text}`}>:</span>
+                <span className="text-gray-400">
+                  {" "}
+                  {`${props.data.volumeInfo.pageCount}`}
+                </span>
+              </h1>
+              <h1 className="py-1">
+                published Date <span className={`${text}`}>:</span>
+                <span className="text-gray-400">
+                  {" "}
+                  {`${props.data.volumeInfo.publishedDate}`}
+                </span>
+              </h1>
+            </div>
+          </div>
+
+          <div className=" flex flex-wrap justify-around items-center gap-10">
+            <button
+              className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
+            >
+              <span>Add to Cart</span>
+              <div className={`${text}  mt-1 text-2xl`}>
+                <ion-icon name="bag-add-outline"></ion-icon>
+              </div>
+            </button>
+            <a
+              target="_blank"
+              href={props.data.accessInfo.webReaderLink}
+              className={`shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-around hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
+            >
+              <span>Demo</span>
+              <div className={`${text}  mt-2 text-2xl`}>
+                <ion-icon name="book-outline"></ion-icon>
+              </div>
+            </a>
+
+            <a
+              target="_blank"
+              href={props.data.volumeInfo.infoLink}
+              className={`shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 bg-gray-50 h-12 flex rounded-2xl justify-around hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
+            >
+              <span>Playstore</span>
+              <div className={`${text}  mt-2 text-2xl`}>
+                <ion-icon name="logo-google-playstore"></ion-icon>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-around flex-col">
+        <h1 className={`${text}`}>Description</h1>
+        <h1>{` ${props.data.volumeInfo.description}`}</h1>
+      </div>
+    </div>
+  );
+}

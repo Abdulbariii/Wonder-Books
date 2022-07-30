@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Link } from "react-router-dom";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,7 +16,7 @@ import { useFetch } from "../../hook/useFetch";
 
 export default function Slider() {
   const { data, isPending, error } = useFetch(
-    "https://www.googleapis.com/books/v1/volumes?q=paulo:keyes&orderBy=newest&maxResults=3&key=AIzaSyBLmw55bH-rB7hKD-CPJPvlTI0LtQ5tAK8"
+    "https://www.googleapis.com/books/v1/volumes?q=paulo:keyes&orderBy=newest&maxResults=10&key=AIzaSyBLmw55bH-rB7hKD-CPJPvlTI0LtQ5tAK8"
   );
 
   const { mode } = useTheme();
@@ -42,18 +42,23 @@ export default function Slider() {
         {error && <h1>{error}</h1>}
         {data &&
           data.items.map((book) => (
-            <SwiperSlide className="flex flex-col gap-10">
-              <h1>{book.volumeInfo.title}</h1>
-              <img
-                className="object-cover w-72 rounded-2xl   h-96"
-                src={
-                  book.volumeInfo.imageLinks &&
-                  book.volumeInfo.imageLinks.thumbnail.replace(
-                    "zoom=1",
-                    "zoom=10"
-                  )
-                }
-              />
+            <SwiperSlide key={book.id}>
+              <Link
+                to={`/book/:${book.id}`}
+                className="flex flex-col items-center gap-10 cursor-pointer "
+              >
+                <h1 className="text-xl w-fit">{book.volumeInfo.title}</h1>
+                <img
+                  className="object-cover w-72 rounded-2xl   h-96"
+                  src={
+                    book.volumeInfo.imageLinks &&
+                    book.volumeInfo.imageLinks.thumbnail.replace(
+                      "zoom=1",
+                      "zoom=10"
+                    )
+                  }
+                />
+              </Link>
             </SwiperSlide>
           ))}
       </Swiper>
