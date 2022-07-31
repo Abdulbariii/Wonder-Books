@@ -46,15 +46,23 @@ export default function BookDetail(props) {
                 Author <span className={`${text} `}>:</span>
                 <span className="text-gray-400">
                   {" "}
-                  {` ${props.data.volumeInfo.authors.map((author) => author)}`}
+                  {props.data.volumeInfo.authors
+                    ? props.data.volumeInfo.authors.map((author) => author)
+                    : "Unknown"}
                 </span>
               </h1>
               <h1 className="py-1">
                 Gener <span className={`${text}`}>:</span>
-                <span className="text-gray-400">
-                  {" "}
-                  {` ${props.data.volumeInfo.categories[0]}`}
-                </span>
+                {
+                  <span className="text-gray-400">
+                    {" "}
+                    {` ${
+                      props.data.volumeInfo.categories
+                        ? props.data.volumeInfo.categories[0]
+                        : "Unknown"
+                    }`}
+                  </span>
+                }
               </h1>
               <h1 className="py-1">
                 Language <span className={`${text}`}>:</span>

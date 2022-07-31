@@ -8,7 +8,7 @@ export default function Book() {
   const url = `https://www.googleapis.com/books/v1/volumes/${id.replace(
     ":",
     ""
-  )}?fife=w240-h480?key=AIzaSyBLmw55bH-rB7hKD-CPJPvlTI0LtQ5tAK8`;
+  )}?key=AIzaSyBLmw55bH-rB7hKD-CPJPvlTI0LtQ5tAK8`;
   const { data, isPending, error } = useFetch(url);
 
   return (
