@@ -52,9 +52,8 @@ export default function Slider() {
                   className="object-cover w-72 rounded-2xl   h-96"
                   src={
                     book.volumeInfo.imageLinks &&
-                    book.volumeInfo.imageLinks.thumbnail.replace(
-                      "zoom=1",
-                      "zoom=10"
+                    book.volumeInfo.imageLinks.thumbnail.concat(
+                      "&fife=w700-h1000"
                     )
                   }
                 />

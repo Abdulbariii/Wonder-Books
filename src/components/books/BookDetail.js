@@ -5,7 +5,6 @@ export default function BookDetail(props) {
   const { color, text, mode } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
 
-  console.log(props.data);
   return (
     <div className="flex flex-col items-start justify-evenly md:pt-20 gap-32  ">
       <div
@@ -15,14 +14,13 @@ export default function BookDetail(props) {
           className={`object-cover w-80 h-[450px]  rounded-2xl   `}
           src={
             props.data.volumeInfo.imageLinks &&
-            props.data.volumeInfo.imageLinks.thumbnail.replace(
-              "zoom=1",
-              "zoom=10"
+            props.data.volumeInfo.imageLinks.thumbnail.concat(
+              "&fife=w700-h1000"
             )
           }
         />
 
-        <div className="flex flex-col md:gap-28 justify-between items-start">
+        <div className="flex flex-col gap-10 md:gap-28 justify-between items-start">
           <div className="flex justify-around flex-col gap-5">
             <div className="flex justify-between  items-center md:gap-40">
               <h1 className={`text-5xl  ${text}`}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Card from "../components/LibrarySection/Card";
+import SearchBar from "../components/filters/SearchBar";
 export default function Library() {
   return (
     <motion.div
@@ -10,7 +11,7 @@ export default function Library() {
       transition={{ duration: 0.2 }}
       className=" md:mx-24 py-20 lg:py-0   px-5  min-h-screen"
     >
-      <h1 className="text-7xl text-red-500">Library</h1>
+      <SearchBar></SearchBar>
       <Card></Card>
     </motion.div>
   );

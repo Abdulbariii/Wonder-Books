@@ -25,7 +25,11 @@ export default function Footer() {
           <h1 className="text-4xl font-normal md:pb-0 pb-2 ">WONDER BOOKS</h1>
           <div className="flex justify-evenly items-center gap-5">
             {links.map((link) => (
-              <Link className="text-xl font-light " to={link.link}>
+              <Link
+                key={link.name}
+                className="text-xl font-light "
+                to={link.link}
+              >
                 {link.name}
               </Link>
             ))}
