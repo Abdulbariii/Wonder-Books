@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useTheme from "../../hook/useTheme";
 
 export default function SearchBar() {
-  const { searchChange } = useTheme();
+  const { searchChange, mode, color, text } = useTheme();
   const [bookName, setBookName] = useState();
   const searchHandler = (event) => {
     setBookName(event.target.value);
@@ -17,13 +17,17 @@ export default function SearchBar() {
   return (
     <div>
       <form onSubmit={sumbitSearch}>
-        <div className="flex gap-5 flex-wrap text-7xl text-red-400 cursor-pointer">
+        <div className={`flex  gap-5 flex-wrap ${text}  cursor-pointer`}>
           <input
             placeholder="Search"
-            className="w-96 h-10 text-red-200 "
+            className={`w-96 h-10 rounded-2xl  ${
+              mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
+            }  p-5 text-xl`}
             onChange={searchHandler}
           ></input>
-          <button>
+          <button
+            className={`text-4xl hover:scale-125 transition-all duration-150`}
+          >
             <ion-icon name="search-outline"></ion-icon>
           </button>
         </div>

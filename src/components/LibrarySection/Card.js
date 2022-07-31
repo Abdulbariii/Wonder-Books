@@ -21,7 +21,7 @@ export default function Card() {
             className={`w-64 rounded-2xl hover:scale-105 ${color} bg-opacity-30 p-3 gap-2   transition-all duration-200 flex h-96 flex-col  items-center justify-start`}
           >
             <img
-              className="object-cover rounded-2xl hover:translate-y-[-30px]   h-80 w-60 transition-all duration-200  "
+              className="object-cover shadow-inner  shadow-[#0000006d] rounded-2xl hover:translate-y-[-30px]   h-80 w-60 transition-all duration-200  "
               src={
                 d.volumeInfo.imageLinks &&
                 d.volumeInfo.imageLinks.thumbnail.concat("&fife=w700-h1000")
