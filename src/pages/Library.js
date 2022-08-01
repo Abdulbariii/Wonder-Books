@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Card from "../components/LibrarySection/Card";
 import SearchBar from "../components/filters/SearchBar";
+import NextPage from "../components/filters/NextPage";
 export default function Library() {
   return (
     <motion.div
@@ -13,6 +14,7 @@ export default function Library() {
     >
       <SearchBar></SearchBar>
       <Card></Card>
+      <NextPage></NextPage>
     </motion.div>
   );
 }

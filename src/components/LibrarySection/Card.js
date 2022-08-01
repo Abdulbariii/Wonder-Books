@@ -4,16 +4,19 @@ import useTheme from "../../hook/useTheme";
 import { Link } from "react-router-dom";
 export default function Card() {
   const { searchBook, mode, color, text } = useTheme();
-
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchBook}&orderBy=relevance&langRestrict=english`;
+  const { index } = useTheme();
+  console.log(index);
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchBook}&maxResults=12&startIndex=${index}&orderBy=relevance&langRestrict=english`;
   const { data, isPending, error } = useFetch(url);
   const books = data && data.items;
 
   return (
     <div className="flex justify-evenly gap-10 pt-20 p-5 overflow-hidden  flex-wrap items-start w-full h-full">
-      {isPending && <h1>Loading...</h1>}
+      {isPending && (
+        <h1 className="text-7xl fixed left-2/4 top-2/4">Loading...</h1>
+      )}
       {error && <h1>{error}</h1>}
-      {data &&
+      {books &&
         books.map((d) => (
           <Link
             to={`/book/:${d.id}`}
