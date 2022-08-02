@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 export default function Card() {
   const { searchBook, mode, color, text } = useTheme();
   const { index } = useTheme();
-  console.log(index);
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchBook}&maxResults=12&startIndex=${index}&orderBy=relevance&langRestrict=english`;
+
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchBook}&maxResults=12&startIndex=${index}&orderBy=relevance&langRestrict=english/?q=subject:romance`;
   const { data, isPending, error } = useFetch(url);
   const books = data && data.items;
 
   return (
     <div className="flex justify-evenly gap-10 pt-20 p-5 overflow-hidden  flex-wrap items-start w-full h-full">
       {isPending && (
-        <h1 className="text-7xl fixed left-2/4 top-2/4">Loading...</h1>
+        <h1 className="text-xl fixed left-2/4 top-2/4">Loading...</h1>
       )}
       {error && <h1>{error}</h1>}
       {books &&
@@ -32,7 +32,7 @@ export default function Card() {
             />
 
             <h1
-              className={`${
+              className={`overflow-hidden ${
                 mode === "bg-gray-900"
                   ? "text-gray-50 text-opacity-95"
                   : "text-gray-900 text-opacity-80"

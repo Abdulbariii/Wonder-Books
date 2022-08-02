@@ -7,18 +7,23 @@ export default function NextPage() {
   const [numPage, setNumPage] = useState(10);
   return (
     <div>
-      <div className={`flex gap-0 ${color}  bg-opacity-30 rounded-md `}>
+      <div className={`flex gap-0 ${color}   bg-opacity-30 rounded-md `}>
         {pages.map((indexBtn) => (
           <button
-            className={`text-2xl transition-all ${
-              indexBtn * 15 === index ? `${color}  scale-110 shadow-md` : ""
+            key={indexBtn}
+            className={`text-2xl hover:scale-110 transition-all ${
+              indexBtn * 15 === index
+                ? `${color}  scale-110 shadow-md`
+                : index === 1 && indexBtn === 1
+                ? `${color}  scale-110 shadow-md`
+                : ""
             }  p-2 ${text} `}
             onClick={() => {
               nextPageChange(
                 indexBtn === "Next"
-                  ? numPage * 5
+                  ? index * 2
                   : indexBtn === 1
-                  ? 2
+                  ? 1
                   : indexBtn * 15
               );
               setNumPage(numPage + 10);

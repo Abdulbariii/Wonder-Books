@@ -21,7 +21,7 @@ export function ContextTheme(props) {
     color: "bg-sky-200",
     text: "text-sky-500",
     mode: "bg-gray-50",
-    searchBook: "Programming",
+    searchBook: "programming",
     index: 1,
   });
 
