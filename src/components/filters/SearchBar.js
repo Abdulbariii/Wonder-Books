@@ -27,7 +27,7 @@ export default function SearchBar() {
           <input
             value={bookName}
             placeholder="Search"
-            className={`w-96 h-10 rounded-2xl  ${
+            className={`lg:w-96 w-72 h-8 lg:h-10 rounded-2xl  ${
               mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
             }  p-5 text-xl`}
             onChange={searchHandler}

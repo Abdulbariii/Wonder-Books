@@ -18,6 +18,7 @@ export default function NavBar(props) {
   const menuHandler = () => {
     setOpen(open ? false : true);
   };
+
   return (
     <div
       className={`md:flex transition-all duration-300  justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${
@@ -25,7 +26,7 @@ export default function NavBar(props) {
       } overflow-hidden items-start md:items-center  `}
     >
       <Link
-        className={`text-4xl m-5 md:m-0 ${
+        className={`text-4xl md:text-2xl lg:text-4xl m-5 md:m-0 ${
           mode === "bg-gray-900" ? "text-white" : "text-black"
         } font-bold`}
         to="/"
@@ -46,7 +47,7 @@ export default function NavBar(props) {
       <div className="flex md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center">
         {links.map((link) => (
           <Link
-            className={`  text-2xl ${
+            className={`  lg:text-2xl text-xl ${
               mode === "bg-gray-900" ? "text-white" : "text-black"
             }   font-light hover:text-opacity-60 transition-all duration-100 border-solid ${
               link.link === path.pathname ? `border-b-2 ${text}` : null

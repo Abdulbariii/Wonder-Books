@@ -21,9 +21,9 @@ export default function CategoryOptions() {
 
   console.log(gener);
   return (
-    <div className="text-2xl">
+    <div className="lg:text-2xl md:text-xl text-xl">
       <select
-        className={`${color} ${text} bg-opacity-30 text-center  w-40 leading-6 h-10 rounded-2xl`}
+        className={`${color} ${text} bg-opacity-30 text-center  lg:w-40 md:w-40 w-24 leading-6 lg:h-10 md:h-10 h-8 rounded-2xl`}
         value={gener}
         onChange={(event) => {
           setGener(event.target.value);

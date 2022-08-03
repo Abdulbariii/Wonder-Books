@@ -6,12 +6,12 @@ export default function NextPage() {
   const { nextPageChange, color, text, mode, index } = useTheme();
   const [numPage, setNumPage] = useState(10);
   return (
-    <div>
+    <div className="pt-10">
       <div className={`flex gap-0 ${color}   bg-opacity-30 rounded-md `}>
         {pages.map((indexBtn) => (
           <button
             key={indexBtn}
-            className={`text-2xl hover:scale-110 transition-all ${
+            className={`lg:text-2xl text-xl hover:scale-110 transition-all ${
               indexBtn * 15 === index
                 ? `${color}  scale-110 shadow-md`
                 : index === 1 && indexBtn === 1

@@ -18,7 +18,7 @@ function App() {
   return (
     <div className={`App ${mode}  `}>
       {modal && <Modal setModal={setModal}></Modal>}
-      <div className={`blur-sm  ${modal ? "blur-sm " : "blur-none"}`}>
+      <div className={`blur-sm   ${modal ? "blur-sm " : "blur-none"}`}>
         <NavBar setModal={setModal}></NavBar>
 
         <div className="mx-10   py-5">

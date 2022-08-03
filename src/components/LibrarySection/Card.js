@@ -11,9 +11,11 @@ export default function Card() {
   const books = data && data.items;
 
   return (
-    <div className="flex justify-evenly gap-10 pt-20 p-5 overflow-hidden  flex-wrap items-start w-full h-full">
+    <div className="flex justify-evenly gap-7 lg:gap-10 pt-20  overflow-hidden  flex-wrap items-start w-full h-full">
       {isPending && (
-        <h1 className="text-xl fixed left-2/4 top-2/4">Loading...</h1>
+        <h1 className="text-2xl absolute top-64 left-1/2 translate-x-[-50%]">
+          Loading...
+        </h1>
       )}
       {error && <h1>{error}</h1>}
       {books &&
@@ -21,10 +23,10 @@ export default function Card() {
           <Link
             to={`/book/:${d.id}`}
             key={d.id}
-            className={`w-64 rounded-2xl hover:scale-105 ${color} bg-opacity-30 p-3 gap-2   transition-all duration-200 flex h-96 flex-col  items-center justify-start`}
+            className={`lg:w-64 w-28 h-52 rounded-2xl hover:scale-105 ${color} bg-opacity-30 p-1 gap-2   transition-all duration-200 flex lg:h-96 flex-col  items-center justify-start text-center `}
           >
             <img
-              className="object-cover shadow-inner  shadow-[#0000006d] rounded-2xl hover:translate-y-[-30px]   h-80 w-60 transition-all duration-200  "
+              className="object-cover w-40 h-36 shadow-inner  shadow-[#0000006d] rounded-2xl hover:translate-y-[-30px]   lg:h-80 lg:w-60 transition-all duration-200  "
               src={
                 d.volumeInfo.imageLinks &&
                 d.volumeInfo.imageLinks.thumbnail.concat("&fife=w700-h1000")
@@ -36,7 +38,7 @@ export default function Card() {
                 mode === "bg-gray-900"
                   ? "text-gray-50 text-opacity-95"
                   : "text-gray-900 text-opacity-80"
-              }  text-sm`}
+              }  lg:text-sm text-[10px]`}
             >
               {d.volumeInfo.title}
             </h1>

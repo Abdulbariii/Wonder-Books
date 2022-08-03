@@ -6,7 +6,7 @@ export default function BookDetail(props) {
   const [fav, setFav] = useState("bookmark-outline");
 
   return (
-    <div className="flex flex-col items-start justify-evenly md:pt-20 gap-32  ">
+    <div className="flex flex-col items-start justify-evenly md:pt-20 gap-24  ">
       <div
         className={`flex justify-around items-start gap-20 flex-wrap lg:flex-nowrap `}
       >
@@ -88,7 +88,7 @@ export default function BookDetail(props) {
             </div>
           </div>
 
-          <div className=" flex flex-wrap justify-around items-center gap-10">
+          <div className=" flex flex-wrap justify-around items-center gap-5">
             <button
               className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
             >
