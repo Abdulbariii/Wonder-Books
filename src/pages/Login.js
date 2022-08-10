@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+
 import LoginForm from "../components/authforms/LoginForm";
 export default function Login() {
   return (
