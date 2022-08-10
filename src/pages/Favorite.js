@@ -8,7 +8,7 @@ export default function Favorite() {
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.2 }}
     >
-      Favorite
+      bookshelves
     </motion.div>
   );
 }

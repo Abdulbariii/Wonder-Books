@@ -7,7 +7,7 @@ export default function NavBar(props) {
   const links = [
     { name: "Home", link: "/" },
     { name: "Library", link: "/library" },
-    { name: "Favorite", link: "/favorite" },
+    { name: "Bookshelves", link: "/favorite" },
   ];
 
   const path = useLocation();

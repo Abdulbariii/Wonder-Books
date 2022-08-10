@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import LoginForm from "../components/authforms/LoginForm";
-export default function Login() {
+import SignUpForm from "../components/authforms/SignUpForm";
+export default function SignUp() {
   return (
     <motion.div
       initial={{ y: 10, opacity: 0 }}
@@ -10,7 +10,7 @@ export default function Login() {
       transition={{ duration: 0.2 }}
       className={` flex md:mx-24 md:flex-wrap  lg:flex-nowrap py-20 lg:py-0   px-5 justify-center flex-col md:flex-row gap-20 items-start min-h-screen`}
     >
-      <LoginForm></LoginForm>
+      <SignUpForm></SignUpForm>
     </motion.div>
   );
 }

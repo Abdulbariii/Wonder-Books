@@ -5,7 +5,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Favorite from "./pages/Favorite";
-import NavBar from "./components/NavBar";
+import SignUp from "./pages/SignUp";
 import { Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 export default function RouterAnim() {
@@ -20,6 +20,7 @@ export default function RouterAnim() {
           <Route path="/book/:id" element={<Book />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp></SignUp>} />
         </Routes>
       </AnimatePresence>
     </div>
