@@ -12,20 +12,24 @@ import Footer from "./components/footer/Footer";
 import useTheme from "./hook/useTheme";
 import Modal from "./components/Themes/Modal";
 import RouterAnim from "./RouterAnim";
+import useAuth from "./hook/useAuth";
 function App() {
+  const { checkAuth } = useAuth();
   const { mode } = useTheme();
   const [modal, setModal] = useState(false);
   return (
     <div className={`App ${mode}  `}>
       {modal && <Modal setModal={setModal}></Modal>}
-      <div className={`blur-sm   ${modal ? "blur-sm " : "blur-none"}`}>
-        <NavBar setModal={setModal}></NavBar>
+      {checkAuth && (
+        <div className={`blur-sm   ${modal ? "blur-sm " : "blur-none"}`}>
+          <NavBar setModal={setModal}></NavBar>
 
-        <div className="mx-10   py-5">
-          <RouterAnim></RouterAnim>
+          <div className="mx-10   py-5">
+            <RouterAnim></RouterAnim>
+          </div>
+          <Footer></Footer>
         </div>
-        <Footer></Footer>
-      </div>
+      )}
     </div>
   );
 }

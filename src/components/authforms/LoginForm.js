@@ -3,23 +3,43 @@ import useTheme from "../../hook/useTheme";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useState } from "react";
+import useLogin from "../../hook/useLogin";
 export default function LoginForm() {
   const { mode, color, text } = useTheme();
-
+  const { login, isPending, error } = useLogin();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      login(values.email, values.password);
     },
   });
 
   const [Hidepassword, setHidePassword] = useState("password");
   return (
     <div>
-      <h1 className={`text-7xl ${text}  mb-10 font-light`}>Login</h1>
+      <div className="flex justify-center text-red-500 items-center gap-5 w-96 text-7xl">
+        <ion-icon name="warning-outline"></ion-icon>
+        <h1
+          className={`text-sm ${
+            mode === "bg-gray-900"
+              ? "text-gray-50 text-opacity-95"
+              : "text-gray-900 "
+          } underline decoration-clone decoration-red-500`}
+        >
+          {" "}
+          Please! To use the bookshelf feature you first have to login then you
+          will have the ability to create and manage bookshelves
+        </h1>
+      </div>
+
+      <h1 className={`text-7xl ${text}  mb-10 font-light`}>
+        Login
+        <br />{" "}
+      </h1>
+
       <form
         onSubmit={formik.handleSubmit}
         className={`flex flex-col ${color} bg-opacity-30 gap-10 justify-center items-start p-5 w-96 rounded-2xl`}
@@ -80,11 +100,24 @@ export default function LoginForm() {
             </span>
           </label>
         </label>
-        <button
-          className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
-        >
-          Login
-        </button>
+        {error && <h1 className="text-sm font-light">{error}</h1>}
+        {!isPending && (
+          <button
+            type="sumbit"
+            className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
+          >
+            Login
+          </button>
+        )}
+        {isPending && (
+          <button
+            disabled
+            type="sumbit"
+            className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
+          >
+            Loading...
+          </button>
+        )}
         <Link
           to="/signup"
           className={`text-lg ${text} underline decoration-solid  decoration-slice`}

@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
+import useAuth from "../../hook/useAuth";
+import useLogout from "../../hook/useLogout";
+
 import useTheme from "../../hook/useTheme";
 import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
   const { mode, text } = useTheme();
+  const { user } = useAuth();
+  console.log(user);
+
+  const { logout } = useLogout();
   const links = [
     { name: "Home", link: "/" },
     { name: "Library", link: "/library" },
@@ -11,7 +18,6 @@ export default function NavBar(props) {
   ];
 
   const path = useLocation();
-  console.log(path.pathname);
 
   const [open, setOpen] = useState(false);
 
@@ -25,14 +31,27 @@ export default function NavBar(props) {
         open ? "h-fit" : "h-20"
       } overflow-hidden items-start md:items-center  `}
     >
-      <Link
-        className={`text-4xl md:text-2xl lg:text-4xl m-5 md:m-0 ${
-          mode === "bg-gray-900" ? "text-white" : "text-black"
-        } font-bold`}
-        to="/"
-      >
-        Wonder Books
-      </Link>
+      <div className="flex flex-col justify-start items-start">
+        <Link
+          className={`text-4xl md:text-2xl  lg:text-4xl m-5 md:m-0 ${
+            mode === "bg-gray-900" ? "text-white" : "text-black"
+          } font-semibold`}
+          to="/"
+        >
+          Wonder Books
+        </Link>
+
+        {user && user.displayName && (
+          <h1
+            className={`text-xl  ml-1 font-light ${
+              mode === "bg-gray-900" ? "text-white" : "text-black"
+            }`}
+          >
+            Welcome {user.displayName}
+          </h1>
+        )}
+      </div>
+
       <div
         onClick={() => {
           menuHandler();
@@ -77,21 +96,41 @@ export default function NavBar(props) {
             <ion-icon name="bag-add-outline"></ion-icon>
           </div>
         </Link>
-        <Link
-          className="text-2xl font-normal items-center justify-around  flex "
-          to="/login"
-        >
-          <span
-            className={`m-2  ${
-              mode === "bg-gray-900" ? "text-white" : "text-black"
-            }`}
+        {!user && (
+          <Link
+            className="text-2xl font-normal items-center justify-around  flex "
+            to="/login"
           >
-            Login
-          </span>
-          <div className={`${text} mt-2`}>
-            <ion-icon name="log-in-outline"></ion-icon>
-          </div>
-        </Link>
+            <span
+              className={`m-2  ${
+                mode === "bg-gray-900" ? "text-white" : "text-black"
+              }`}
+            >
+              Login
+            </span>
+            <div className={`${text} mt-2`}>
+              <ion-icon name="log-in-outline"></ion-icon>
+            </div>
+          </Link>
+        )}
+
+        {user && (
+          <button
+            onClick={logout}
+            className="text-2xl font-normal items-center justify-around  flex "
+          >
+            <span
+              className={`m-2  ${
+                mode === "bg-gray-900" ? "text-white" : "text-black"
+              }`}
+            >
+              logout
+            </span>
+            <div className={`${text} mt-2`}>
+              <ion-icon name="log-out-outline"></ion-icon>
+            </div>
+          </button>
+        )}
       </div>
     </div>
   );

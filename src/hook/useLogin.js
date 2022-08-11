@@ -2,24 +2,21 @@ import React, { useState } from "react";
 import { projectAuth } from "../firebase/Config";
 import useAuth from "./useAuth";
 
-export default function useSignUp() {
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
+export default function useLogin() {
   const { dispatch } = useAuth();
-  const signUp = async (email, password, displayName) => {
-    setError(null);
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+  const login = async (email, password) => {
     setIsPending(true);
+    setError(null);
 
     try {
-      const res = await projectAuth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+      const res = await projectAuth.signInWithEmailAndPassword(email, password);
 
       if (!res) {
         throw new Error("Not Complete");
       }
-      await res.user.updateProfile({ displayName });
+
       dispatch({ type: "LOGIN", payload: res.user });
       setIsPending(false);
     } catch (err) {
@@ -27,6 +24,5 @@ export default function useSignUp() {
       setError(err.message);
     }
   };
-
-  return { signUp, isPending, error };
+  return { error, isPending, login };
 }

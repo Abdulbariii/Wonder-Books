@@ -4,9 +4,11 @@ import useTheme from "../../hook/useTheme";
 
 import { useFormik } from "formik";
 import useSignUp from "../../hook/useSignUp";
+import useAuth from "../../hook/useAuth";
 export default function SignUpForm() {
   const { mode, color, text } = useTheme();
   const { signUp, error, isPending } = useSignUp();
+  const { user } = useAuth();
   const formik = useFormik({
     initialValues: {
       displayName: "",
@@ -14,8 +16,9 @@ export default function SignUpForm() {
       password: "",
     },
     onSubmit: (values) => {
-      signUp(values.displayName, values.email, values.password);
-      console.log(values);
+      signUp(values.email, values.password, values.displayName);
+
+      console.log(user);
     },
   });
 
@@ -103,12 +106,24 @@ export default function SignUpForm() {
             </span>
           </label>
         </label>
-        <button
-          type="sumbit"
-          className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
-        >
-          Sign Up
-        </button>
+        {error && <h1 className="text-sm font-light">{error}</h1>}
+        {!isPending && (
+          <button
+            type="sumbit"
+            className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
+          >
+            Sign Up
+          </button>
+        )}
+        {isPending && (
+          <button
+            disabled
+            type="sumbit"
+            className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
+          >
+            Loading...
+          </button>
+        )}
       </form>
     </div>
   );
