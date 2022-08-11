@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import useTheme from "../hook/useTheme";
-import ThemeButton from "./Themes/ThemeButton";
+import useTheme from "../../hook/useTheme";
+import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
   const { mode, text } = useTheme();
   const links = [

@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import useTheme from "../../hook/useTheme";
 
 import { useFormik } from "formik";
+import useSignUp from "../../hook/useSignUp";
 export default function SignUpForm() {
   const { mode, color, text } = useTheme();
-
+  const { signUp, error, isPending } = useSignUp();
   const formik = useFormik({
     initialValues: {
       displayName: "",
@@ -13,6 +14,7 @@ export default function SignUpForm() {
       password: "",
     },
     onSubmit: (values) => {
+      signUp(values.displayName, values.email, values.password);
       console.log(values);
     },
   });
@@ -102,6 +104,7 @@ export default function SignUpForm() {
           </label>
         </label>
         <button
+          type="sumbit"
           className={`w-80 text-xl flex justify-center items-center h-10 ${color} rounded-2xl`}
         >
           Sign Up
