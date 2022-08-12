@@ -27,13 +27,13 @@ export default function NavBar(props) {
 
   return (
     <div
-      className={`md:flex transition-all duration-300  justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${
-        open ? "h-fit" : "h-20"
+      className={`md:flex transition-all duration-300   justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${
+        open ? "h-fit" : "h-24"
       } overflow-hidden items-start md:items-center  `}
     >
-      <div className="flex flex-col justify-start items-start">
+      <div className="flex flex-col  justify-start items-start">
         <Link
-          className={`text-4xl md:text-2xl  lg:text-4xl m-5 md:m-0 ${
+          className={`text-4xl md:text-2xl  lg:text-4xl  md:m-0 ${
             mode === "bg-gray-900" ? "text-white" : "text-black"
           } font-semibold`}
           to="/"
@@ -43,7 +43,7 @@ export default function NavBar(props) {
 
         {user && user.displayName && (
           <h1
-            className={`text-xl  ml-1 font-light ${
+            className={`text-xl  font-light ${
               mode === "bg-gray-900" ? "text-white" : "text-black"
             }`}
           >

@@ -24,7 +24,7 @@ function App() {
         <div className={`blur-sm   ${modal ? "blur-sm " : "blur-none"}`}>
           <NavBar setModal={setModal}></NavBar>
 
-          <div className="mx-10   py-5">
+          <div className="md:mx-10   py-5">
             <RouterAnim></RouterAnim>
           </div>
           <Footer></Footer>

@@ -23,10 +23,10 @@ export default function Card() {
           <Link
             to={`/book/:${d.id}`}
             key={d.id}
-            className={`lg:w-64 w-28 h-52 rounded-2xl hover:scale-105 ${color} bg-opacity-30 p-1 gap-2   transition-all duration-200 flex lg:h-96 flex-col  items-center justify-start text-center `}
+            className={`lg:w-64 w-36 h-64 rounded-2xl hover:scale-105 ${color} bg-opacity-30 p-1 gap-2   transition-all duration-200 flex lg:h-96 flex-col  items-center justify-start text-center `}
           >
             <img
-              className="object-cover w-40 h-36 shadow-inner  shadow-[#0000006d] rounded-2xl hover:translate-y-[-30px]   lg:h-80 lg:w-60 transition-all duration-200  "
+              className="object-cover w-40 h-52 shadow-inner  shadow-[#0000006d] rounded-2xl hover:translate-y-[-30px]   lg:h-80 lg:w-60 transition-all duration-200  "
               src={
                 d.volumeInfo.imageLinks &&
                 d.volumeInfo.imageLinks.thumbnail.concat("&fife=w700-h1000")
@@ -38,7 +38,7 @@ export default function Card() {
                 mode === "bg-gray-900"
                   ? "text-gray-50 text-opacity-95"
                   : "text-gray-900 text-opacity-80"
-              }  lg:text-sm text-[10px]`}
+              }  lg:text-sm text-sm`}
             >
               {d.volumeInfo.title}
             </h1>
