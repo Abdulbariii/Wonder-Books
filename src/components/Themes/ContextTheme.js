@@ -13,6 +13,8 @@ const colorReducer = (state, action) => {
       return { ...state, searchBook: action.payload };
     case "CHANGE_NEXT_PAGE":
       return { ...state, index: action.payload };
+    case "OPEN_MODAL":
+      return { ...state, warningModal: action.payload };
   }
 };
 
@@ -23,6 +25,7 @@ export function ContextTheme(props) {
     mode: "bg-gray-50",
     searchBook: "programming",
     index: 1,
+    warningModal: false,
   });
 
   const colorChange = (color) => {
@@ -43,6 +46,9 @@ export function ContextTheme(props) {
     distpatch({ ty: "CHANGE_NEXT_PAGE", payload: index });
   };
 
+  const openModal = (state) => {
+    distpatch({ ty: "OPEN_MODAL", payload: state });
+  };
   return (
     <themeContext.Provider
       value={{
@@ -52,6 +58,7 @@ export function ContextTheme(props) {
         modeChange,
         textChange,
         nextPageChange,
+        openModal,
       }}
     >
       {props.children}

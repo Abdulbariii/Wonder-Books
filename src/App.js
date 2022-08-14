@@ -13,15 +13,21 @@ import useTheme from "./hook/useTheme";
 import Modal from "./components/Themes/Modal";
 import RouterAnim from "./RouterAnim";
 import useAuth from "./hook/useAuth";
+import ModalWarning from "./components/modalWarning/ModalWarning";
 function App() {
   const { checkAuth } = useAuth();
-  const { mode } = useTheme();
+  const { mode, warningModal } = useTheme();
   const [modal, setModal] = useState(false);
   return (
     <div className={`App ${mode}  `}>
       {modal && <Modal setModal={setModal}></Modal>}
+      {warningModal && <ModalWarning></ModalWarning>}
       {checkAuth && (
-        <div className={`blur-sm   ${modal ? "blur-sm " : "blur-none"}`}>
+        <div
+          className={`  ${
+            modal ? "blur-[2px] " : warningModal ? "blur-[2px]" : "blur-none"
+          }  `}
+        >
           <NavBar setModal={setModal}></NavBar>
 
           <div className="md:mx-10   py-5">

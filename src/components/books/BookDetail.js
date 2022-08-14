@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import useAuth from "../../hook/useAuth";
 import useCart from "../../hook/useCart";
 import useTheme from "../../hook/useTheme";
-
+import ModalWarning from "../modalWarning/ModalWarning";
 export default function BookDetail(props) {
-  const { color, text, mode } = useTheme();
+  const { color, text, mode, openModal } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
   const { cart, setCart } = useCart();
 
+  const { user } = useAuth();
   const addToCart = () => {
     setCart([
       ...cart,
@@ -19,7 +21,9 @@ export default function BookDetail(props) {
     ]);
   };
   return (
-    <div className="flex flex-col items-start justify-evenly md:pt-20 gap-24  ">
+    <div
+      className={`flex flex-col items-start  justify-evenly md:pt-20 gap-24  `}
+    >
       <div
         className={`flex justify-around items-start gap-20 flex-wrap lg:flex-nowrap `}
       >
@@ -104,7 +108,7 @@ export default function BookDetail(props) {
           <div className=" flex flex-wrap justify-around items-center gap-5">
             <button
               onClick={() => {
-                addToCart();
+                user ? addToCart() : openModal(true);
               }}
               className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
             >

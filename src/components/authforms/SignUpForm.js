@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import useTheme from "../../hook/useTheme";
-
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import useSignUp from "../../hook/useSignUp";
 import useAuth from "../../hook/useAuth";
@@ -20,26 +20,13 @@ export default function SignUpForm() {
 
       console.log(user);
     },
-    validate: (values) => {
-      const errors = {};
-      if (!values.displayName) {
-        errors.displayName = "Required";
-      }
-      if (!values.email) {
-        errors.email = "Required";
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email address";
-      }
-      if (!values.password) {
-        errors.password = "Required";
-      }
-
-      //...
-
-      return errors;
-    },
+    validationSchema: Yup.object({
+      displayName: Yup.string().required("Required"),
+      password: Yup.string()
+        .min(8, "Must be 8 characters or more")
+        .required("Required"),
+      email: Yup.string().email("Invalid email address").required("Required"),
+    }),
   });
 
   const [Hidepassword, setHidePassword] = useState("password");
@@ -62,16 +49,18 @@ export default function SignUpForm() {
           </span>
           <input
             id="displayName"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.displayName}
             type={"text"}
             placeholder="Name"
             className="w-72 md:w-80 h-10 rounded-2xl p-5"
           ></input>
+          {formik.touched.displayName && formik.errors.displayName && (
+            <h1 className="text-red-700">{formik.errors.displayName}</h1>
+          )}
         </label>
-        {formik.errors.displayName && (
-          <h1 className="text-red-500">{formik.errors.displayName}</h1>
-        )}
+
         <label htmlFor="email" className="flex-col flex gap-3">
           <span
             className={`text-xl  font-light ${
@@ -84,16 +73,18 @@ export default function SignUpForm() {
           </span>
           <input
             id="email"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.email}
             type={"email"}
             placeholder="Email"
             className="w-72 md:w-80 h-10 rounded-2xl p-5"
           ></input>
+          {formik.touched.email && formik.errors.email && (
+            <h1 className="text-red-700">{formik.errors.email}</h1>
+          )}
         </label>
-        {formik.errors.email && (
-          <h1 className="text-red-500">{formik.errors.email}</h1>
-        )}
+
         <label htmlFor="password" className="flex-col flex gap-3">
           <span
             className={`text-xl  font-light ${
@@ -106,12 +97,16 @@ export default function SignUpForm() {
           </span>
           <input
             id="password"
+            onBlur={formik.handleBlur}
             value={formik.values.password}
             onChange={formik.handleChange}
             type={Hidepassword}
             placeholder="Password"
             className="w-72 md:w-80 h-10 rounded-2xl p-5"
           ></input>
+          {formik.touched.password && formik.errors.password && (
+            <h1 className="text-red-700">{formik.errors.password}</h1>
+          )}
           <label className="flex gap-5 py-2 items-center justify-start ml-5">
             <input
               onChange={() => {
@@ -131,9 +126,7 @@ export default function SignUpForm() {
             </span>
           </label>
         </label>
-        {formik.errors.password && (
-          <h1 className="text-red-500">{formik.errors.password}</h1>
-        )}
+
         {error && <h1 className="text-lg font-light text-red-500">{error}</h1>}
         {!isPending && (
           <button

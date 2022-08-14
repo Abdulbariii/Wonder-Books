@@ -3,6 +3,7 @@ import useTheme from "../../hook/useTheme";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useState } from "react";
+import * as Yup from "yup";
 import useLogin from "../../hook/useLogin";
 export default function LoginForm() {
   const { mode, color, text } = useTheme();
@@ -12,6 +13,12 @@ export default function LoginForm() {
       email: "",
       password: "",
     },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email address").required("Required"),
+      password: Yup.string()
+        .min(8, "Must be 8 characters or more")
+        .required("Required"),
+    }),
     onSubmit: (values) => {
       login(values.email, values.password);
     },
@@ -58,10 +65,14 @@ export default function LoginForm() {
             id="email"
             onChange={formik.handleChange}
             value={formik.values.email}
+            onBlur={formik.handleBlur}
             type={"email"}
             placeholder="Email"
             className="w-72 md:w-80 h-10 rounded-2xl p-5"
           ></input>
+          {formik.touched.email && formik.errors.email && (
+            <h1 className="text-red-700">{formik.errors.email}</h1>
+          )}
         </label>
         <label htmlFor="password" className="flex-col flex gap-3">
           <span
@@ -78,9 +89,13 @@ export default function LoginForm() {
             value={formik.values.password}
             onChange={formik.handleChange}
             type={Hidepassword}
+            onBlur={formik.handleBlur}
             placeholder="Password"
             className="w-72 md:w-80  h-10 rounded-2xl p-5"
           ></input>
+          {formik.touched.password && formik.errors.password && (
+            <h1 className="text-red-700">{formik.errors.password}</h1>
+          )}
           <label className="flex gap-5 py-2 items-center justify-start ml-5">
             <input
               onChange={() => {
