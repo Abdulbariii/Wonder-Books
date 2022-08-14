@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+import useCart from "../../hook/useCart";
 import useTheme from "../../hook/useTheme";
 
 export default function BookDetail(props) {
   const { color, text, mode } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
+  const { cart, setCart } = useCart();
 
+  const addToCart = () => {
+    setCart([
+      ...cart,
+      {
+        image:
+          props.data.volumeInfo.imageLinks &&
+          props.data.volumeInfo.imageLinks.thumbnail.concat("&fife=w700-h1000"),
+        title: props.data.volumeInfo.title,
+      },
+    ]);
+  };
   return (
     <div className="flex flex-col items-start justify-evenly md:pt-20 gap-24  ">
       <div
@@ -90,6 +103,9 @@ export default function BookDetail(props) {
 
           <div className=" flex flex-wrap justify-around items-center gap-5">
             <button
+              onClick={() => {
+                addToCart();
+              }}
               className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
             >
               <span>Add to Cart</span>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
+import useCart from "../../hook/useCart";
 import useLogout from "../../hook/useLogout";
 
 import useTheme from "../../hook/useTheme";
@@ -8,6 +9,7 @@ import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
   const { mode, text } = useTheme();
   const { user } = useAuth();
+  const { cart } = useCart();
   console.log(user);
 
   const { logout } = useLogout();
@@ -90,7 +92,7 @@ export default function NavBar(props) {
               mode === "bg-gray-900" ? "text-white" : "text-black"
             }`}
           >
-            0
+            {cart.length}
           </span>
           <div className={`${text} mt-2`}>
             <ion-icon name="bag-add-outline"></ion-icon>
