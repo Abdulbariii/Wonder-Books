@@ -31,7 +31,10 @@ export default function RouterAnim() {
             element={user ? <Favorite /> : <Navigate replace to="/login" />}
           />
           <Route path="/book/:id" element={<Book />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={user ? <Cart /> : <Navigate replace to="/login" />}
+          />
           <Route
             path="/login"
             element={user ? <Navigate replace to="/" /> : <Login />}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
-import useCart from "../../hook/useCart";
+
 import useLogout from "../../hook/useLogout";
 import useCollection from "../../hook/useCollection";
 import useTheme from "../../hook/useTheme";
@@ -9,9 +9,8 @@ import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
   const { mode, text } = useTheme();
   const { user } = useAuth();
-  const { cart } = useCart();
   console.log(user);
-  const { documents, error } = useCollection("Carts");
+
   const { logout } = useLogout();
   const links = [
     { name: "Home", link: "/" },
@@ -27,6 +26,13 @@ export default function NavBar(props) {
     setOpen(open ? false : true);
   };
 
+  const { documents, error } = useCollection(
+    "Carts",
+    ["uid", "==", user ? user.uid : null],
+    ["createdAt", "desc"]
+  );
+
+  console.log(documents && documents);
   return (
     <div
       className={`md:flex transition-all duration-300   justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${

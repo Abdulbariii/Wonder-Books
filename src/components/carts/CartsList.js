@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useAuth from "../../hook/useAuth";
+
 import useCollection from "../../hook/useCollection";
 
 export default function CartsList() {
-  const { documents, error } = useCollection("Carts");
-  console.log(documents && documents);
+  const { user } = useAuth();
+
+  const { documents, error } = useCollection(
+    "Carts",
+    ["uid", "==", user ? user.uid : null],
+    ["createdAt", "desc"]
+  );
+
   return (
     <div className="flex flex-wrap gap-10">
       {documents &&

@@ -14,10 +14,13 @@ import Modal from "./components/Themes/Modal";
 import RouterAnim from "./RouterAnim";
 import useAuth from "./hook/useAuth";
 import ModalWarning from "./components/modalWarning/ModalWarning";
+import useCollection from "./hook/useCollection";
 function App() {
   const { checkAuth } = useAuth();
   const { mode, warningModal } = useTheme();
   const [modal, setModal] = useState(false);
+  const { user } = useAuth();
+
   return (
     <div className={`App ${mode}  `}>
       {modal && <Modal setModal={setModal}></Modal>}

@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { projectFirestore } from "../firebase/Config";
 
-export default function useCollection(collection) {
+export default function useCollection(collection, arrayQuery, sort) {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
-
+  const query = useRef(arrayQuery).current;
+  const sortByOrder = useRef(sort).current;
   useEffect(() => {
     let ref = projectFirestore.collection(collection);
+    if (query) {
+      ref = ref.where(...query);
+    }
+
+    if (sortByOrder) {
+      ref = ref.orderBy(...sortByOrder);
+    }
 
     const uns = ref.onSnapshot(
       (snapshot) => {
@@ -24,7 +32,7 @@ export default function useCollection(collection) {
     );
 
     return () => uns();
-  }, [collection]);
+  }, [collection, query]);
 
-  return { documents, error };
+  return { documents, error, sort };
 }
