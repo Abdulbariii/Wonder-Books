@@ -38,14 +38,12 @@ export const useFirestore = (collection) => {
   // collection ref
   const ref = projectFirestore.collection(collection);
 
-  // only dispatch if not cancelled
   const dispatchIfNotCancelled = (action) => {
     if (!isCancelled) {
       dispatch(action);
     }
   };
 
-  // add a document
   const addDocument = async (doc) => {
     dispatch({ type: "IS_PENDING" });
 

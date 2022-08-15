@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import useAuth from "../../hook/useAuth";
 import useCart from "../../hook/useCart";
+import { useFirestore } from "../../hook/useFirestore";
 import useTheme from "../../hook/useTheme";
 import ModalWarning from "../modalWarning/ModalWarning";
 export default function BookDetail(props) {
   const { color, text, mode, openModal } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
   const { cart, setCart } = useCart();
-
+  const { addDocument } = useFirestore("Carts");
   const { user } = useAuth();
   const addToCart = () => {
     setCart([
@@ -108,7 +109,17 @@ export default function BookDetail(props) {
           <div className=" flex flex-wrap justify-around items-center gap-5">
             <button
               onClick={() => {
-                user ? addToCart() : openModal(true);
+                user
+                  ? addDocument({
+                      uid: user.uid,
+                      image:
+                        props.data.volumeInfo.imageLinks &&
+                        props.data.volumeInfo.imageLinks.thumbnail.concat(
+                          "&fife=w700-h1000"
+                        ),
+                      title: props.data.volumeInfo.title,
+                    })
+                  : openModal(true);
               }}
               className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
             >

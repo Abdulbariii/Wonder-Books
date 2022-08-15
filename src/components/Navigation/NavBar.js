@@ -3,7 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import useCart from "../../hook/useCart";
 import useLogout from "../../hook/useLogout";
-
+import useCollection from "../../hook/useCollection";
 import useTheme from "../../hook/useTheme";
 import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
@@ -11,7 +11,7 @@ export default function NavBar(props) {
   const { user } = useAuth();
   const { cart } = useCart();
   console.log(user);
-
+  const { documents, error } = useCollection("Carts");
   const { logout } = useLogout();
   const links = [
     { name: "Home", link: "/" },
@@ -92,7 +92,7 @@ export default function NavBar(props) {
               mode === "bg-gray-900" ? "text-white" : "text-black"
             }`}
           >
-            {cart.length}
+            {documents && documents.length}
           </span>
           <div className={`${text} mt-2`}>
             <ion-icon name="bag-add-outline"></ion-icon>
