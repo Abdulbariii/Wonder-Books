@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 
@@ -17,6 +17,7 @@ export default function NavBar(props) {
     { name: "Library", link: "/library" },
     { name: "Bookshelves", link: "/favorite" },
   ];
+  const [cartLenght, setCartLength] = useState(0);
 
   const path = useLocation();
 
@@ -32,7 +33,9 @@ export default function NavBar(props) {
     ["createdAt", "desc"]
   );
 
-  console.log(documents && documents);
+  useEffect(() => {
+    setCartLength(user ? documents && documents.length : 0);
+  }, [user, documents]);
   return (
     <div
       className={`md:flex transition-all duration-300   justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${
@@ -98,7 +101,7 @@ export default function NavBar(props) {
               mode === "bg-gray-900" ? "text-white" : "text-black"
             }`}
           >
-            {documents && documents.length}
+            {cartLenght}
           </span>
           <div className={`${text} mt-2`}>
             <ion-icon name="bag-add-outline"></ion-icon>
