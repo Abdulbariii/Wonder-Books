@@ -4,7 +4,7 @@ import Book from "./pages/Book";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Favorite from "./pages/Favorite";
+import Bookshelves from "./pages/Bookshelves";
 import SignUp from "./pages/SignUp";
 import {
   Router,
@@ -27,8 +27,8 @@ export default function RouterAnim() {
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />} />
           <Route
-            path="/favorite"
-            element={user ? <Favorite /> : <Navigate replace to="/login" />}
+            path="/bookshelves"
+            element={user ? <Bookshelves /> : <Navigate replace to="/login" />}
           />
           <Route path="/book/:id" element={<Book />} />
           <Route

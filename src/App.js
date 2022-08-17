@@ -1,11 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import Library from "./pages/Library";
-import Book from "./pages/Book";
-import Cart from "./pages/Cart";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import Favorite from "./pages/Favorite";
+
 import NavBar from "./components/Navigation/NavBar";
 import { Router, Routes, Route, Link } from "react-router-dom";
 import Footer from "./components/footer/Footer";
@@ -15,6 +10,7 @@ import RouterAnim from "./RouterAnim";
 import useAuth from "./hook/useAuth";
 import ModalWarning from "./components/modalWarning/ModalWarning";
 import useCollection from "./hook/useCollection";
+import "leaflet/dist/leaflet.css";
 function App() {
   const { checkAuth } = useAuth();
   const { mode, warningModal } = useTheme();

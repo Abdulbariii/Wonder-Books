@@ -15,7 +15,7 @@ export default function NavBar(props) {
   const links = [
     { name: "Home", link: "/" },
     { name: "Library", link: "/library" },
-    { name: "Bookshelves", link: "/favorite" },
+    { name: "Bookshelves", link: "/bookshelves" },
   ];
   const [cartLenght, setCartLength] = useState(0);
 
