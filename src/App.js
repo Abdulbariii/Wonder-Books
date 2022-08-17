@@ -6,7 +6,7 @@ import { Router, Routes, Route, Link } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import useTheme from "./hook/useTheme";
 import Modal from "./components/Themes/Modal";
-import RouterAnim from "./RouterAnim";
+import RouterAnim from "./routers/RouterAnim";
 import useAuth from "./hook/useAuth";
 import ModalWarning from "./components/modalWarning/ModalWarning";
 import useCollection from "./hook/useCollection";
