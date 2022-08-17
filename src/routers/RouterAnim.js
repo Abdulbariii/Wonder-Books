@@ -29,10 +29,16 @@ export default function RouterAnim() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />} />
+
           <Route
-            path="/bookshelves"
+            path="bookshelves"
             element={user ? <Bookshelves /> : <Navigate replace to="/login" />}
-          />
+          >
+            <Route path="haveread" element={<HaveRead></HaveRead>} />
+            <Route path="favorite" element={<Favorite></Favorite>} />
+            <Route path="toread" element={<ToRead></ToRead>} />
+            <Route path="readingnow" element={<ReadingNow></ReadingNow>} />
+          </Route>
 
           <Route path="/book/:id" element={<Book />} />
           <Route
