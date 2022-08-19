@@ -3,7 +3,7 @@ import useAuth from "../../hook/useAuth";
 import { useFirestore } from "../../hook/useFirestore";
 import useTheme from "../../hook/useTheme";
 import ModalWarning from "../modalWarning/ModalWarning";
-
+import BookshelfOption from "./BookshelfOption";
 export default function BookDetail(props) {
   const { color, text, mode, openModal } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
@@ -34,15 +34,6 @@ export default function BookDetail(props) {
               <h1 className={`text-5xl  ${text}`}>
                 {props.data.volumeInfo.title}
               </h1>
-
-              <div
-                onClick={() => {
-                  setFav(fav === "bookmark" ? "bookmark-outline" : "bookmark");
-                }}
-                className={`${text} cursor-pointer  mt-5 text-4xl `}
-              >
-                <ion-icon name={`${fav}`}></ion-icon>
-              </div>
             </div>
 
             <div
@@ -141,7 +132,11 @@ export default function BookDetail(props) {
             </a>
           </div>
         </div>
+        <div>
+          <BookshelfOption></BookshelfOption>
+        </div>
       </div>
+
       <div className="flex gap-10 pb-10 justify-around flex-col">
         <h1 className={`${text} text-3xl`}>Description</h1>
         <h1
