@@ -12,19 +12,23 @@ export default function Modal(props) {
   const dataTheme = [
     {
       bg: "bg-sky-200",
-      text: "text-sky-500",
+      text: "text-sky-400",
     },
     {
       bg: "bg-red-200",
-      text: "text-red-500",
+      text: "text-red-400",
     },
     {
       bg: "bg-yellow-200",
-      text: "text-yellow-500",
+      text: "text-yellow-400",
     },
     {
       bg: "bg-violet-200",
-      text: "text-violet-500",
+      text: "text-violet-400",
+    },
+    {
+      bg: "bg-teal-200",
+      text: "text-teal-400",
     },
   ];
   const closeModal = () => {

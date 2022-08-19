@@ -15,9 +15,10 @@ const colorReducer = (state, action) => {
       return { ...state, index: action.payload };
     case "OPEN_MODAL":
       return { ...state, warningModal: action.payload };
+    case "ACTIVE_BOOKSHELF":
+      return { ...state, activeShelf: action.payload };
   }
 };
-
 export function ContextTheme(props) {
   const [state, distpatch] = useReducer(colorReducer, {
     color: "bg-sky-200",
@@ -26,8 +27,9 @@ export function ContextTheme(props) {
     searchBook: "programming",
     index: 1,
     warningModal: false,
+    activeShelf: "/bookshelves/favorite",
   });
-
+  console.log(state.activeShelf);
   const colorChange = (color) => {
     distpatch({ ty: "CHANGE_COLOR", payload: color });
   };
@@ -49,6 +51,9 @@ export function ContextTheme(props) {
   const openModal = (state) => {
     distpatch({ ty: "OPEN_MODAL", payload: state });
   };
+  const activeBookshelf = (active) => {
+    distpatch({ ty: "ACTIVE_BOOKSHELF", payload: active });
+  };
   return (
     <themeContext.Provider
       value={{
@@ -59,6 +64,7 @@ export function ContextTheme(props) {
         textChange,
         nextPageChange,
         openModal,
+        activeBookshelf,
       }}
     >
       {props.children}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 
 import useLogout from "../../hook/useLogout";
@@ -7,7 +7,7 @@ import useCollection from "../../hook/useCollection";
 import useTheme from "../../hook/useTheme";
 import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
-  const { mode, text } = useTheme();
+  const { mode, text, activeShelf } = useTheme();
   const { user } = useAuth();
   console.log(user);
 
@@ -15,7 +15,7 @@ export default function NavBar(props) {
   const links = [
     { name: "Home", link: "/" },
     { name: "Library", link: "/library" },
-    { name: "Bookshelves", link: "/bookshelves" },
+    { name: "Bookshelves", link: `${activeShelf}` },
   ];
   const [cartLenght, setCartLength] = useState(0);
 
@@ -74,19 +74,21 @@ export default function NavBar(props) {
           name={`${!open ? "menu" : "close"}-outline`}
         ></ion-icon>
       </div>
-      <div className="flex md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center">
+      <div
+        className={`flex lg:text-2xl text-xl ${
+          mode === "bg-gray-900" ? "text-white" : "text-black"
+        }  font-light hover:text-opacity-60  border-solid md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center`}
+      >
         {links.map((link) => (
-          <Link
-            className={`  lg:text-2xl text-xl ${
-              mode === "bg-gray-900" ? "text-white" : "text-black"
-            }   font-light hover:text-opacity-60 transition-all duration-100 border-solid ${
-              link.link === path.pathname ? `border-b-2 ${text}` : null
-            } `}
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? ` ${text} border-b-2` : ` `
+            }
             to={link.link}
             key={link.name}
           >
             {link.name}
-          </Link>
+          </NavLink>
         ))}
       </div>
 
