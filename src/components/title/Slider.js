@@ -21,7 +21,7 @@ export default function Slider() {
 
   const { mode } = useTheme();
   return (
-    <>
+    <div className="w-96">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -61,6 +61,6 @@ export default function Slider() {
             </SwiperSlide>
           ))}
       </Swiper>
-    </>
+    </div>
   );
 }
