@@ -12,19 +12,19 @@ export default function SearchDashboard() {
     event.preventDefault();
   };
   return (
-    <div>
-      <div className="flex flex-wrap gap-10">
+    <div className="">
+      <div className="flex  flex-wrap gap-10">
         <form onSubmit={sumbitSearch}>
           <div className={`flex  gap-5 flex-wrap ${text}  cursor-pointer`}>
             <button
-              className={`text-4xl hover:scale-125 transition-all duration-150`}
+              className={`text-2xl hover:scale-125 transition-all duration-150`}
             >
               <ion-icon name="search-outline"></ion-icon>
             </button>
             <input
               value={bookName}
               placeholder="Search"
-              className={` w-56 h-8  rounded-2xl  ${
+              className={` w-40 h-5  rounded-2xl  ${
                 mode === "bg-gray-900" ? "bg-gray-50" : "bg-gray-900"
               }  p-3 text-lg`}
               onChange={searchHandler}

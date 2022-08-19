@@ -35,7 +35,7 @@ export default function Dashboard() {
     <div
       className={`flex transition-all duration-150 ${
         mode === "bg-gray-900" ? "text-white" : "text-gray-900"
-      } flex-col gap-20 h-[30rem] border-gray-500   border-r-2 font-normal pr-4 text-lg`}
+      } flex-col gap-20 h-96 border-gray-500 w-40   border-r-2 font-normal pr-4 text-lg`}
     >
       {dashboardNav &&
         dashboardNav.map((nav) => (

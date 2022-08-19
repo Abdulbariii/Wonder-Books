@@ -28,7 +28,7 @@ export default function Bookshelves() {
         </h1>
       </div>
 
-      <div className="flex justify-between items-start w-full">
+      <div className="flex justify-around items-start w-full">
         <div>
           <Dashboard></Dashboard>
         </div>
