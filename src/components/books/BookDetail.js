@@ -117,18 +117,22 @@ export default function BookDetail(props) {
                       })
                   : openModal(true);
               }}
-              className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
+              className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${
+                user && cartAdded === true ? "bg-green-300" : color
+              } h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
             >
-              <span>Add to Cart</span>
+              <span>
+                {user && cartAdded === true ? "Added" : "add to cart"}
+              </span>
               <div
                 className={`${
-                  cartAdded === true ? "text-green-500" : text
-                }  mt-1 text-2xl`}
+                  user && cartAdded === true ? "text-green-700 text-3xl" : text
+                }  mt-1 `}
               >
-                {cartAdded === false ? (
-                  <ion-icon name="bag-add-outline"></ion-icon>
-                ) : (
+                {user && cartAdded === true ? (
                   <ion-icon name="checkmark-outline"></ion-icon>
+                ) : (
+                  <ion-icon name="bag-add-outline"></ion-icon>
                 )}
               </div>
             </button>
