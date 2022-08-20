@@ -8,7 +8,7 @@ import AddToHaveRead from "./AddToHaveRead";
 import useAuth from "../../hook/useAuth";
 
 import { Link } from "react-router-dom";
-export default function BookshelfOption() {
+export default function BookshelfOption(props) {
   const { color, text, mode, openModal } = useTheme();
 
   const [checkFavorite, setCheckFavorite] = useState(false);
@@ -23,10 +23,13 @@ export default function BookshelfOption() {
       <div className="items-start gap-5  flex flex-col mt-5">
         {user && (
           <>
-            <AddToFav></AddToFav>
-            <AddToRead></AddToRead>
-            <AddToRnow></AddToRnow>
-            <AddToHaveRead></AddToHaveRead>
+            <AddToFav image={props.image} title={props.title}></AddToFav>
+            <AddToRead image={props.image} title={props.title}></AddToRead>
+            <AddToRnow image={props.image} title={props.title}></AddToRnow>
+            <AddToHaveRead
+              image={props.image}
+              title={props.title}
+            ></AddToHaveRead>
           </>
         )}
 

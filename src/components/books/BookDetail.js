@@ -160,7 +160,15 @@ export default function BookDetail(props) {
           </div>
         </div>
         <div>
-          <BookshelfOption></BookshelfOption>
+          <BookshelfOption
+            image={
+              props.data.volumeInfo.imageLinks &&
+              props.data.volumeInfo.imageLinks.thumbnail.concat(
+                "&fife=w700-h1000"
+              )
+            }
+            title={props.data.volumeInfo.title && props.data.volumeInfo.title}
+          ></BookshelfOption>
         </div>
       </div>
 
