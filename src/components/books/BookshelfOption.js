@@ -9,9 +9,7 @@ export default function BookshelfOption() {
   const [checkRnow, setCheckRnow] = useState(false);
   const [checkHaveRead, setCheckHaveRead] = useState(false);
   return (
-    <div
-      className={`${text}  cursor-pointer items-start gap-2 flex flex-col  text-lg  w-32`}
-    >
+    <div className={`${text}   items-start gap-2 flex flex-col  text-lg  w-32`}>
       <ion-icon name="add-outline"></ion-icon>
 
       <h1 className="font-medium ">Add to bookshelf as</h1>

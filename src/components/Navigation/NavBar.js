@@ -9,7 +9,6 @@ import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
   const { mode, text, activeShelf } = useTheme();
   const { user } = useAuth();
-  console.log(user);
 
   const { logout } = useLogout();
   const links = [
@@ -18,8 +17,6 @@ export default function NavBar(props) {
     { name: "Bookshelves", link: `${activeShelf}` },
   ];
   const [cartLenght, setCartLength] = useState(0);
-
-  const path = useLocation();
 
   const [open, setOpen] = useState(false);
 

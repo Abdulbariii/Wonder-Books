@@ -77,9 +77,17 @@ export const useFirestore = (collection) => {
     }
   };
 
+  async function getID() {
+    const snapshot = await projectFirestore
+      .firestore()
+      .collection(collection)
+      .get();
+    return snapshot.size;
+  }
+
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { addDocument, deleteDocument, response };
+  return { addDocument, deleteDocument, getID, response };
 };

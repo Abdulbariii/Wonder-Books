@@ -1,16 +1,23 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import React, { useState } from "react";
 import useAuth from "../../hook/useAuth";
 import { useFirestore } from "../../hook/useFirestore";
 import useTheme from "../../hook/useTheme";
 import ModalWarning from "../modalWarning/ModalWarning";
 import BookshelfOption from "./BookshelfOption";
+import useCollection from "../../hook/useCollection";
 export default function BookDetail(props) {
   const { color, text, mode, openModal } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
-
-  const { addDocument } = useFirestore("Carts");
+  const [cartAdded, setCartAdded] = useState(false);
+  const { addDocument, deleteDocument } = useFirestore("Carts");
   const { user } = useAuth();
 
+  const { documents, error } = useCollection(
+    "Carts",
+    ["uid", "==", user ? user.uid : null],
+    ["createdAt", "desc"]
+  );
   return (
     <div
       className={`flex flex-col items-start  justify-evenly md:pt-20 gap-24  `}
@@ -90,23 +97,39 @@ export default function BookDetail(props) {
           <div className=" flex flex-wrap justify-around items-center gap-5">
             <button
               onClick={(e) => {
+                setCartAdded(cartAdded === true ? false : true);
+
                 user
-                  ? addDocument({
-                      uid: user.uid,
-                      image:
-                        props.data.volumeInfo.imageLinks &&
-                        props.data.volumeInfo.imageLinks.thumbnail.concat(
-                          "&fife=w700-h1000"
-                        ),
-                      title: props.data.volumeInfo.title,
-                    })
+                  ? cartAdded === false
+                    ? addDocument({
+                        uid: user.uid,
+                        image:
+                          props.data.volumeInfo.imageLinks &&
+                          props.data.volumeInfo.imageLinks.thumbnail.concat(
+                            "&fife=w700-h1000"
+                          ),
+                        title: props.data.volumeInfo.title,
+                      })
+                    : documents &&
+                      documents.map((doc) => {
+                        doc.title === props.data.volumeInfo.title &&
+                          deleteDocument(doc.id);
+                      })
                   : openModal(true);
               }}
               className={` shadow-sm shadow-[#0000006a] hover:shadow-md hover:shadow-[#0000006a] w-44 ${color} h-12 flex rounded-2xl justify-between hover:scale-105 transition-all duration-200 items-center text-xl p-5`}
             >
               <span>Add to Cart</span>
-              <div className={`${text}  mt-1 text-2xl`}>
-                <ion-icon name="bag-add-outline"></ion-icon>
+              <div
+                className={`${
+                  cartAdded === true ? "text-green-500" : text
+                }  mt-1 text-2xl`}
+              >
+                {cartAdded === false ? (
+                  <ion-icon name="bag-add-outline"></ion-icon>
+                ) : (
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                )}
               </div>
             </button>
             <a

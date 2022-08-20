@@ -15,16 +15,16 @@ export default function Modal(props) {
       text: "text-sky-400",
     },
     {
-      bg: "bg-red-200",
-      text: "text-red-400",
+      bg: "bg-rose-200",
+      text: "text-rose-400",
     },
     {
-      bg: "bg-yellow-200",
-      text: "text-yellow-400",
+      bg: "bg-amber-200",
+      text: "text-amber-400",
     },
     {
-      bg: "bg-violet-200",
-      text: "text-violet-400",
+      bg: "bg-indigo-200",
+      text: "text-indigo-400",
     },
     {
       bg: "bg-teal-200",
