@@ -14,6 +14,7 @@ import Dashboard from "../components/Navigation/Dashboard";
 import { Outlet } from "react-router-dom";
 import SearchDashboard from "../components/Navigation/SearchDashboard";
 import useAuth from "../hook/useAuth";
+import SearchDashboardPage from "../components/bookshelf/SearchDashboardPage";
 export default function Bookshelves() {
   const { user } = useAuth();
   const { text, mode } = useTheme();
@@ -28,7 +29,7 @@ export default function Bookshelves() {
         </h1>
       </div>
 
-      <div className="flex justify-around items-start w-full">
+      <div className="flex  justify-around items-start w-full">
         <div>
           <Dashboard></Dashboard>
         </div>
@@ -40,8 +41,9 @@ export default function Bookshelves() {
         >
           <Outlet></Outlet>
         </motion.div>
-        <div>
+        <div className=" h-72 flex flex-col gap-10  justify-start items-stretch">
           <SearchDashboard></SearchDashboard>
+          <SearchDashboardPage></SearchDashboardPage>
         </div>
       </div>
     </div>

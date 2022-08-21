@@ -17,6 +17,8 @@ const colorReducer = (state, action) => {
       return { ...state, warningModal: action.payload };
     case "ACTIVE_BOOKSHELF":
       return { ...state, activeShelf: action.payload };
+    case "SEARCH_BOOKSHELF":
+      return { ...state, searchBookshelf: action.payload };
   }
 };
 export function ContextTheme(props) {
@@ -28,6 +30,7 @@ export function ContextTheme(props) {
     index: 1,
     warningModal: false,
     activeShelf: "/bookshelves/favorite",
+    searchBookshelf: "nothing",
   });
   console.log(state.activeShelf);
   const colorChange = (color) => {
@@ -54,6 +57,9 @@ export function ContextTheme(props) {
   const activeBookshelf = (active) => {
     distpatch({ ty: "ACTIVE_BOOKSHELF", payload: active });
   };
+  const searchBookshelfHandler = (searchBookshelf) => {
+    distpatch({ ty: "SEARCH_BOOKSHELF", payload: searchBookshelf });
+  };
   return (
     <themeContext.Provider
       value={{
@@ -65,6 +71,7 @@ export function ContextTheme(props) {
         nextPageChange,
         openModal,
         activeBookshelf,
+        searchBookshelfHandler,
       }}
     >
       {props.children}
