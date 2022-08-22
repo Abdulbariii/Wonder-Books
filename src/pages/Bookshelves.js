@@ -19,7 +19,7 @@ export default function Bookshelves() {
   const { user } = useAuth();
   const { text, mode } = useTheme();
   return (
-    <div className=" md:mx-24   justify-center items-center flex-col  gap-28  px-5  min-h-screen">
+    <div className=" md:mx-24    justify-center items-center flex-col  gap-28  lg:px-5 px-7 md:px-0 flex-wrap min-h-screen">
       <div className="mb-20">
         <h1 className={`text-3xl   font-extralight `}>
           <span className={`${text}  mr-3 font-medium`}>
@@ -29,7 +29,10 @@ export default function Bookshelves() {
         </h1>
       </div>
 
-      <div className="flex  justify-around items-start w-full">
+      <div
+        className="flex flex-wrap gap-24 lg:gap-0 lg:flex-nowrap md:items-center  justify-center flex-col  lg:flex-row
+       items-center lg:w-full w-80"
+      >
         <div>
           <Dashboard></Dashboard>
         </div>
@@ -38,10 +41,11 @@ export default function Bookshelves() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -10, opacity: 0 }}
           transition={{ duration: 0.2 }}
+          className="ml-10 lg:ml-0 md:ml-0"
         >
           <Outlet></Outlet>
         </motion.div>
-        <div className=" h-72 flex flex-col gap-10  justify-start items-stretch">
+        <div className=" h-72 flex flex-col gap-10    justify-start items-stretch">
           <SearchDashboard></SearchDashboard>
           <SearchDashboardPage></SearchDashboardPage>
         </div>

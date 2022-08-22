@@ -26,7 +26,7 @@ export default function AddToHaveRead(props) {
                 doc.title === props.title && deleteDocument(doc.id);
               });
         }}
-        className={`flex gap-2  hover:scale-110 transition-all duration-150 items-center justify-center text-base  ${
+        className={`flex lg:gap-2  hover:scale-110 transition-all duration-150 items-center justify-center text-base  ${
           checkHaveRead === true
             ? text
             : mode === "bg-gray-900"

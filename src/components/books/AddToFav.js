@@ -26,7 +26,7 @@ export default function AddToFav(props) {
                 doc.title === props.title && deleteDocument(doc.id);
               });
         }}
-        className={`flex gap-2 hover:scale-125 transition-all duration-150 items-center justify-center text-base  ${
+        className={`flex lg:gap-2  hover:scale-125 transition-all duration-150 items-center justify-center text-base  ${
           checkFavorite === true
             ? text
             : mode === "bg-gray-900"

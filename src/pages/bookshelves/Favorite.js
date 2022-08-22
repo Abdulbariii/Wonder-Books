@@ -16,7 +16,7 @@ export default function Favorite() {
   const { text } = useTheme();
   return (
     <div
-      className={`${text} h-96 grow w-[50rem] px-10 flex justify-start items-start text-start`}
+      className={`${text} h-96 grow lg:w-[50rem] w-fit md:w-[35rem] lg:px-10 ml-4 lg:ml-0  mb-10 lg:mb-0 px-2 flex lg:justify-start lg:items-start justify-center items-center text-start`}
     >
       <BookshelfCards
         deleteDocument={deleteDocument}

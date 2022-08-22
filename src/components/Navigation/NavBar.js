@@ -7,7 +7,7 @@ import useCollection from "../../hook/useCollection";
 import useTheme from "../../hook/useTheme";
 import ThemeButton from "../Themes/ThemeButton";
 export default function NavBar(props) {
-  const { mode, text, activeShelf } = useTheme();
+  const { mode, text, activeShelf, searchBookshelfHandler } = useTheme();
   const { user } = useAuth();
 
   const { logout } = useLogout();
@@ -16,6 +16,10 @@ export default function NavBar(props) {
     { name: "Library", link: "/library" },
     { name: "Bookshelves", link: `${activeShelf}` },
   ];
+
+  useEffect(() => {
+    searchBookshelfHandler("nothing");
+  }, [activeShelf]);
   const [cartLenght, setCartLength] = useState(0);
 
   const [open, setOpen] = useState(false);
