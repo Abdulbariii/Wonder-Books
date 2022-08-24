@@ -13,6 +13,7 @@ import "./styles.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import useTheme from "../../hook/useTheme";
 import { useFetch } from "../../hook/useFetch";
+import { subText } from "../../utils/subText";
 
 export default function Slider() {
   const { data, isPending, error } = useFetch(
@@ -21,7 +22,7 @@ export default function Slider() {
 
   const { mode } = useTheme();
   return (
-    <div className="w-96">
+    <div className="lg:w-96 w-80 flex justify-center mb-20 items-center">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -45,9 +46,11 @@ export default function Slider() {
             <SwiperSlide key={book.id}>
               <Link
                 to={`/book/:${book.id}`}
-                className="flex flex-col items-center gap-10 cursor-pointer "
+                className="flex flex-col  items-center gap-10 cursor-pointer "
               >
-                <h1 className="text-xl w-fit">{book.volumeInfo.title}</h1>
+                <h1 className="text-xl w-fit">
+                  {subText(book.volumeInfo.title, 30)}
+                </h1>
                 <img
                   className="object-cover w-72 rounded-2xl   h-96"
                   src={

@@ -39,7 +39,7 @@ export default function NavBar(props) {
   }, [user, documents]);
   return (
     <div
-      className={`md:flex transition-all duration-300   justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${
+      className={`md:flex transition-all duration-300 mb-5  justify-around bg-transparent px-5 py-5 md:px-3 md:py-3 relative   w-full ${
         open ? "h-fit" : "h-24"
       } overflow-hidden items-start md:items-center  `}
     >
@@ -76,7 +76,7 @@ export default function NavBar(props) {
         ></ion-icon>
       </div>
       <div
-        className={`flex lg:text-2xl text-xl ${
+        className={`flex lg:text-2xl mt-10 text-xl ${
           mode === "bg-gray-900" ? "text-white" : "text-black"
         }  font-light hover:text-opacity-60  border-solid md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center`}
       >

@@ -19,8 +19,7 @@ export default function Title() {
             mode === "bg-gray-900" ? "text-white" : "text-black"
           }`}
         >
-          is that place that you can find{" "}
-          <span className={`${text}`}>wonder books</span>
+          Exploer books
         </p>
       </div>
 

@@ -19,9 +19,13 @@ export default function Bookshelves() {
   const { user } = useAuth();
   const { text, mode } = useTheme();
   return (
-    <div className=" md:mx-24    justify-center items-center flex-col  gap-28  lg:px-5 px-7 md:px-0 flex-wrap min-h-screen">
-      <div className="mb-20">
-        <h1 className={`text-3xl   font-extralight `}>
+    <div className=" md:mx-24     justify-start items-center flex-col  gap-28 lg:px-5 px-7 md:px-0 flex-wrap min-h-screen">
+      <div className="flex justify-start items-start lg:mb-20 mb-10 ml-5">
+        <h1
+          className={`text-3xl ${
+            mode === "bg-gray-900" ? "text-white" : "text-black"
+          }    font-extralight `}
+        >
           <span className={`${text}  mr-3 font-medium`}>
             {user && user.displayName}'s
           </span>
@@ -30,7 +34,7 @@ export default function Bookshelves() {
       </div>
 
       <div
-        className="flex flex-wrap gap-24 lg:gap-0 lg:flex-nowrap md:items-center  justify-center flex-col  lg:flex-row
+        className="flex flex-wrap gap-24 lg:ml-4 lg:gap-0 lg:justify-center lg:items-start lg:flex-nowrap md:items-center  justify-center flex-col  lg:flex-row
        items-center lg:w-full w-80"
       >
         <div>
@@ -45,7 +49,7 @@ export default function Bookshelves() {
         >
           <Outlet></Outlet>
         </motion.div>
-        <div className=" h-72 flex flex-col gap-10    justify-start items-stretch">
+        <div className=" lg:h-72 w-72 h-96 flex flex-col gap-10 overflow-hidden  lg:overflow-visible  mb-5 justify-start items-stretch">
           <SearchDashboard></SearchDashboard>
           <SearchDashboardPage></SearchDashboardPage>
         </div>

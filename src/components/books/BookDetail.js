@@ -6,6 +6,7 @@ import useTheme from "../../hook/useTheme";
 import ModalWarning from "../modalWarning/ModalWarning";
 import BookshelfOption from "./BookshelfOption";
 import useCollection from "../../hook/useCollection";
+import { subText } from "../../utils/subText";
 export default function BookDetail(props) {
   const { color, text, mode, openModal } = useTheme();
   const [fav, setFav] = useState("bookmark-outline");
@@ -180,7 +181,7 @@ export default function BookDetail(props) {
               ? "text-gray-50 text-opacity-95"
               : "text-gray-900 text-opacity-80"
           } bg-opacity-20 p-5 rounded-2xl text-md font-extralight  leading-7`}
-        >{` ${props.data.volumeInfo.description}`}</h1>
+        >{` ${subText(props.data.volumeInfo.description, 999)}`}</h1>
       </div>
     </div>
   );
