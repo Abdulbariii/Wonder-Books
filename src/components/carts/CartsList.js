@@ -16,10 +16,10 @@ export default function CartsList({ documents }) {
         documents.map((doc) => (
           <div
             key={doc.id}
-            className="flex relative justify-around items-center p-3 rounded-2xl  shadow-lg md:w-[28rem] w-[24rem]  h-40"
+            className="flex relative justify-around items-center p-3 rounded-2xl  shadow-lg md:w-[28rem] w-80  h-32  md:h-40"
           >
             <img
-              className="w-28 h-36 object-cover rounded-md "
+              className="md:w-28 md:h-36 w-20 h-28 object-cover rounded-md "
               src={doc.image}
             />
             <div className="flex text-xs md:text-lg w-48 gap-5 justify-between items-stretch">

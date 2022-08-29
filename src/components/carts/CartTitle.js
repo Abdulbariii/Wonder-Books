@@ -7,7 +7,7 @@ export default function CartTitle({ documents }) {
   const { text, mode } = useTheme();
   return (
     <div
-      className={`flex-col flex gap-5 mb-20 ${
+      className={`flex-col p-5 md:p-0 flex gap-5 mb-20 ${
         mode === "bg-gray-900" ? "text-white" : "text-black"
       }`}
     >

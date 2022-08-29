@@ -13,7 +13,13 @@ export default function Card() {
   return (
     <div className="flex justify-evenly gap-7 lg:gap-10 pt-20  overflow-hidden  flex-wrap items-start w-full h-full">
       {isPending && (
-        <h1 className="text-2xl absolute top-64 left-1/2 translate-x-[-50%]">
+        <h1
+          className={`text-2xl absolute top-64 left-1/2  ${
+            mode === "bg-gray-900"
+              ? "text-gray-50 text-opacity-95"
+              : "text-gray-900 text-opacity-80"
+          } translate-x-[-50%] `}
+        >
           Loading...
         </h1>
       )}

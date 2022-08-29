@@ -25,7 +25,7 @@ export function ContextTheme(props) {
   const [state, distpatch] = useReducer(colorReducer, {
     color: "bg-sky-200",
     text: "text-sky-500",
-    mode: "bg-gray-50",
+    mode: "bg-gray-900",
     searchBook: "programming",
     index: 1,
     warningModal: false,
