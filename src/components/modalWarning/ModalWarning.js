@@ -36,7 +36,7 @@ export default function ModalWarning() {
       </div>
       <ion-icon name="warning-outline"></ion-icon>
       <h1 className="text-xl text-center">
-        You have to login to add items in your cart at
+        You have to login to add items into your cart at
       </h1>
       <Link
         onClick={() => {

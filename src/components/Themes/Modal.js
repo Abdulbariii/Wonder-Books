@@ -99,7 +99,7 @@ export default function Modal(props) {
         </div>
       </div>
 
-      <div className={`${color} h-[2px] w-72 rounded-2xl`}></div>
+      <div className={`${color} h-[5px] w-72 rounded-2xl`}></div>
       <div className="flex gap-5 flex-col p-5 justify-around items-start">
         <h1
           className={` text-2xl ${

@@ -32,7 +32,7 @@ export function ContextTheme(props) {
     activeShelf: "/bookshelves/favorite",
     searchBookshelf: "nothing",
   });
-  console.log(state.activeShelf);
+
   const colorChange = (color) => {
     distpatch({ ty: "CHANGE_COLOR", payload: color });
   };

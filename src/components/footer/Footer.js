@@ -4,7 +4,7 @@ import useTheme from "../../hook/useTheme";
 const links = [
   { name: "Home", link: "/" },
   { name: "Library", link: "/library" },
-  { name: "Favorite", link: "/favorite" },
+  { name: "Bookshelves", link: "/bookshelves" },
 ];
 
 export default function Footer() {

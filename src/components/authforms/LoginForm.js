@@ -37,8 +37,9 @@ export default function LoginForm() {
           } underline decoration-clone decoration-red-500`}
         >
           {" "}
-          Please! To use the bookshelf feature you first have to login then you
-          will have the ability to create and manage bookshelves
+          Please! To use the bookshelf feature and add books into your cart at
+          you first have to login then you will have the ability to create and
+          manage bookshelves
         </h1>
       </div>
 
