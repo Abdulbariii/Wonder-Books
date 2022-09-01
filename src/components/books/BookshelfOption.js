@@ -20,7 +20,7 @@ export default function BookshelfOption(props) {
       <ion-icon name="add-outline"></ion-icon>
 
       <h1 className="font-medium ">Add to bookshelf as</h1>
-      <div className="items-start gap-5  flex flex-col mt-5">
+      <div className="items-start gap-5  flex-row flex lg:flex-col mt-5 ">
         {user && (
           <>
             <AddToFav image={props.image} title={props.title}></AddToFav>

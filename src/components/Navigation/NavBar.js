@@ -78,12 +78,12 @@ export default function NavBar(props) {
       <div
         className={`flex lg:text-2xl mt-10 text-xl ${
           mode === "bg-gray-900" ? "text-white" : "text-black"
-        }  font-light hover:text-opacity-60  border-solid md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center`}
+        }  font-light   border-solid md:flex-row m-5 md:m-0 transition-all duration-300   flex-col gap-5 items-start justify-around  md:items-center`}
       >
         {links.map((link) => (
           <NavLink
             className={({ isActive }) =>
-              isActive ? ` ${text} border-b-2` : ` `
+              isActive ? ` ${text} border-b-2 hover:text-opacity-60` : ` `
             }
             to={link.link}
             key={link.name}

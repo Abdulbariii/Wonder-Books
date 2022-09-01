@@ -24,7 +24,7 @@ export default function BookDetail(props) {
       className={`flex flex-col items-start  justify-evenly md:pt-20 gap-24  `}
     >
       <div
-        className={`flex justify-around items-start gap-20 flex-wrap lg:flex-nowrap `}
+        className={`flex justify-start items-start gap-20 flex-wrap lg:flex-nowrap `}
       >
         <img
           className={`object-cover w-80 h-[450px]  rounded-2xl   `}
@@ -160,7 +160,7 @@ export default function BookDetail(props) {
             </a>
           </div>
         </div>
-        <div>
+        <div className="mr-50">
           <BookshelfOption
             image={
               props.data.volumeInfo.imageLinks &&
